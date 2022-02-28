@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://script/GUI.gd" type="Script" id=1]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="life" type="ProgressBar" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 150.0
+margin_bottom = 10.0
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -337.056
+margin_top = -136.0
+margin_right = 338.944
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+margin_left = 176.0
+margin_top = 57.0
+margin_right = 674.0
+margin_bottom = 96.0
+text = "Bonjour, tu es bien le héros de ce village?"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Button" type="Button" parent="Panel"]
+margin_left = 251.071
+margin_top = 82.1171
+margin_right = 351.071
+margin_bottom = 127.117
+text = "oui..."
+
+[connection signal="yes" from="." to="." method="_on_GUI_yes"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_Button_pressed"]

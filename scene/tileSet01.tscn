@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fond.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 16 )
+
+[node name="tileSet01" type="Node2D"]
+
+[node name="Sol" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Mur" type="Sprite" parent="."]
+position = Vector2( 64, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Mur"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mur/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="BasDeLit" type="Sprite" parent="."]
+position = Vector2( 64, 48 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 32, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasDeLit"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasDeLit/StaticBody2D"]
+rotation = 3.14159
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="HautDeLit" type="Sprite" parent="."]
+position = Vector2( 0, 48 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 32, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="HautDeLit"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HautDeLit/StaticBody2D"]
+shape = SubResource( 3 )
+one_way_collision = true
