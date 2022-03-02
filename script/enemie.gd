@@ -15,19 +15,21 @@ func _ready():
 	$AnimationPlayer.play("idle")
 	target = get_parent().get_node("Player")
 	nav = get_parent().get_node("Navigation2D")
-	$Line2D.hide()
+	#Line2D.hide()
 
 func _physics_process(delta):
 	$Line2D.global_position = Vector2.ZERO
 #	vel = target.global_position - self.global_position
 #	vel = vel.normalized()
-	var path:PoolVector2Array = nav.get_simple_path(self.global_position, target.global_position, false)
+	var path:PoolVector2Array = nav.get_simple_path(self.global_position, target.global_position, true)
 	$Line2D.points = path
-	distance = calcul_distance(path)
 	if path.size() > 1:
+		distance = calcul_distance(path)
 		vel = path[1] - self.position
-	if distance < detection:
-		move_and_slide(vel.normalized() * speed)
+		if distance < detection:
+			move_and_slide(vel.normalized() * speed)
+	else:
+		print("nok")
 		
 
 func calcul_distance(chemin:PoolVector2Array):

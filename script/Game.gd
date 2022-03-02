@@ -22,7 +22,7 @@ func _ready():
 	tick = length_day / 2
 	$Player/Light2D.hide()
 
-func _physics_process(delat):
+func _physics_process(delta):
 	tick += 1
 	day_cycle()
 

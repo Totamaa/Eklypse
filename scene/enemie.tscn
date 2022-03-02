@@ -21,7 +21,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 23.726
+radius = 19.7085
 
 [node name="enemi" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -45,4 +45,4 @@ default_color = Color( 0.952941, 0.101961, 0.0156863, 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -3.70813, -2.11893 )
 shape = SubResource( 2 )
-disabled = true
+one_way_collision_margin = 7.5
