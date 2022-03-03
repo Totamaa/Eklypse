@@ -24,6 +24,7 @@ tracks/0/keys = {
 radius = 19.7085
 
 [node name="enemi" type="KinematicBody2D"]
+position = Vector2( -0.314972, 0 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -46,3 +47,15 @@ default_color = Color( 0.952941, 0.101961, 0.0156863, 1 )
 position = Vector2( -3.70813, -2.11893 )
 shape = SubResource( 2 )
 one_way_collision_margin = 7.5
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = -36.9142
+margin_top = -49.4251
+margin_right = 29.0858
+margin_bottom = -35.4251
+step = 1.0
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}

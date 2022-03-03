@@ -1,27 +1,32 @@
 extends KinematicBody2D
 
-var target
-var nav
-var vel = Vector2()
+
+export var mobMaxHealth = 100
 export var detectionDay = 400
 export var detectionNight = 800
-var detection = detectionDay
 export var speedDay = 125
 export var speedNight = 200
+
+var Target
+var Nav
+var vel = Vector2()
+var detection = detectionDay
 var speed = speedDay
 var distance
 
 func _ready():
 	$AnimationPlayer.play("idle")
-	target = get_parent().get_node("Player")
-	nav = get_parent().get_node("Navigation2D")
+	Target = get_parent().get_node("Player")
+	Nav = get_parent().get_node("Navigation2D")
 	#Line2D.hide()
+	$ProgressBar.max_value = mobMaxHealth
+	$ProgressBar.value = mobMaxHealth
 
 func _physics_process(delta):
 	$Line2D.global_position = Vector2.ZERO
-#	vel = target.global_position - self.global_position
+#	vel = Target.global_position - self.global_position
 #	vel = vel.normalized()
-	var path:PoolVector2Array = nav.get_simple_path(self.global_position, target.global_position, true)
+	var path:PoolVector2Array = Nav.get_simple_path(self.global_position, Target.global_position, true)
 	$Line2D.points = path
 	if path.size() > 1:
 		distance = calcul_distance(path)
@@ -31,6 +36,9 @@ func _physics_process(delta):
 	else:
 		print("nok")
 		
+	
+	$ProgressBar.hide() if $ProgressBar.value == 100 else $ProgressBar.show()
+	
 
 func calcul_distance(chemin:PoolVector2Array):
 	var somme = 0
