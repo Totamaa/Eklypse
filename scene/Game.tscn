@@ -21,7 +21,7 @@ tile_data = PoolIntArray( -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="Player" parent="." groups=["Persist"] instance=ExtResource( 4 )]
 position = Vector2( 646, 347 )
 rotation = -0.106446
 
@@ -34,7 +34,9 @@ energy = 0.5
 [node name="Pnj" parent="." instance=ExtResource( 5 )]
 
 [node name="enemi" parent="." instance=ExtResource( 3 )]
-position = Vector2( 626, 282 )
+position = Vector2( 374, 211 )
 
 [connection signal="day" from="." to="enemi" method="_on_scene01_day"]
 [connection signal="night" from="." to="enemi" method="_on_scene01_night"]
+[connection signal="tree_entered" from="." to="." method="_on_Game_tree_entered"]
+[connection signal="tree_exited" from="." to="." method="_on_Game_tree_exited"]
