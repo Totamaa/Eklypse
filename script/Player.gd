@@ -48,3 +48,10 @@ func _on_hitbox_body_entered(body):
 
 func _on_GUI_yes():
 	$GUI/Panel.hide()
+	
+func get_property():
+	var dict_propery = {
+		"position": self.global_position
+	}
+	
+	return dict_propery

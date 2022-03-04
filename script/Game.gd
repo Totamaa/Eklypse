@@ -1,12 +1,13 @@
 extends Node2D
 
+const saving_script = preload("res://script/save.gd")
+
 export var duree_day = 1
 export var color_day = Color("#ffffff")
 export var color_night = Color("#9a7bc4")
 
 signal night
 signal day
-
 
 var tick = 0
 var length_day = 0
@@ -15,6 +16,15 @@ var nb_day = 0
 
 enum {JOUR, NUIT}
 var cycle = JOUR
+
+
+func _on_Game_tree_entered():
+	var data = saving_script.load_data()
+	get_node("Player").set("position", str2var("Vector2" + data["player"]["position"]))
+
+# Fonction pour appeler la sauvegarde quand le jeu se ferme
+func _on_Game_tree_exited():
+	saving_script.save_on_quit(get_node("Player").get_property())
 
 func _ready():
 	length_day = 60 * 60 * duree_day
@@ -62,26 +72,3 @@ func cycle_test(new_cycle):
 			remove_child(twe)
 			$Player/Light2D.hide()
 			emit_signal("day")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
