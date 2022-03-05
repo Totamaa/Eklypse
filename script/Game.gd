@@ -22,7 +22,7 @@ var cycle = JOUR
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
 func _ready():
 	length_day = 60 * 60 * duree_day # 60 ticks par seconde et 60 secondes par minute
-	tick = length_day / 2 # la moitié du jour: débute a midi
+	#tick = length_day / 2 # la moitié du jour: débute a midi
 	$Player/Light2D.hide()
 
 
