@@ -31,7 +31,7 @@ func _ready():
 	$ProgressBar.max_value = mobMaxHealth
 	$ProgressBar.value = mobMaxHealth
 	
-	#Line2D.hide()
+	$Line2D.hide()
 
 
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
@@ -50,8 +50,6 @@ func _physics_process(delta):
 		vel = path[1] - self.position
 		if distance < detection:
 			move_and_slide(vel.normalized() * speed)
-	else:
-		print("nok")
 	
 	#affiche la barre de vie des monstres si elle est <100
 	$ProgressBar.hide() if $ProgressBar.value == 100 else $ProgressBar.show()
