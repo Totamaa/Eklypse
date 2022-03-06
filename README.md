@@ -1,4 +1,6 @@
 # Eklypse
+![Version](https://img.shields.io/badge/Version-enDeveloppement-blueviolet)
+![Langage](https://img.shields.io/badge/Langage-GDScript-0052cf)
 
 
 ## Sommaire
