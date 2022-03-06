@@ -61,11 +61,14 @@ func cycle_test(new_cycle):
 		# si c'est la nuit
 		if cycle == NUIT:
 			# le fondu jour -> nuit
-			add_child(twe)
-			twe.interpolate_property($CanvasModulate, "color", color_day, color_night, 5, Tween.TRANS_SINE, Tween.EASE_IN)
-			twe.start()
-			yield(twe, 'tween_completed')
-			remove_child(twe)
+			if hours >= 20:
+				$CanvasModulate.color = color_night
+			else:
+				add_child(twe)
+				twe.interpolate_property($CanvasModulate, "color", color_day, color_night, 5, Tween.TRANS_SINE, Tween.EASE_IN)
+				twe.start()
+				yield(twe, 'tween_completed')
+				remove_child(twe)
 
 			$Player/Light2D.show()
 
