@@ -20,6 +20,8 @@ var vel = Vector2()
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
 func _ready():
 
+	add_to_group("enemy")
+	
 	# animation du monstre
 	$AnimationPlayer.play("idle")
 
@@ -49,8 +51,9 @@ func _physics_process(delta):
 		distance = calcul_distance(path)
 		vel = path[1] - self.position
 		if distance < detection:
-			move_and_slide(vel.normalized() * speed)
-	
+			vel = vel.normalized()
+			animation(vel)
+			move_and_slide(vel * speed)
 	#affiche la barre de vie des monstres si elle est <100
 	$ProgressBar.hide() if $ProgressBar.value == 100 else $ProgressBar.show()
 	
@@ -87,3 +90,13 @@ func _on_scene01_night():
 	detection = detectionNight
 	speed = speedNight
 	attack = attackNight
+
+
+func animation(vel):
+	if vel.x >= 0:
+		$Sprite.flip_h = true
+	else:
+		$Sprite.flip_h = false
+	
+func getAttack():
+	return attack

@@ -90,12 +90,8 @@ smoothing_speed = 7.0
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-visible = false
 position = Vector2( 0, 0.594604 )
 shape = SubResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="GUI" parent="." instance=ExtResource( 3 )]
 
