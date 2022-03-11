@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Eklypse"
-run/main_scene="res://scene/Game.tscn"
+run/main_scene="res://scene/menu.tscn"
 config/icon="res://icon.png"
 
 [input]
