@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/planksBroken_N.png-bbfb6f2210ab7d6e4b9294c6cecf7cc5.stex"
+path="res://.import/planksBroken_N.png-b12793a2c9c976789250e22c77478f84.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/environment_assets/test/planksBroken_N.png"
-dest_files=[ "res://.import/planksBroken_N.png-bbfb6f2210ab7d6e4b9294c6cecf7cc5.stex" ]
+source_file="res://assets/environment_assets/test/planksBroken_N.png"
+dest_files=[ "res://.import/planksBroken_N.png-b12793a2c9c976789250e22c77478f84.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

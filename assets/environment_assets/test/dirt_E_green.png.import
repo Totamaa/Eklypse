@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dirt_E_green.png-a88f0b51ba29f08befa43be1c25f8480.stex"
+path="res://.import/dirt_E_green.png-58fc0f1d820489ee90a9fc2c41c91c44.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/environment_assets/test/dirt_E_green.png"
-dest_files=[ "res://.import/dirt_E_green.png-a88f0b51ba29f08befa43be1c25f8480.stex" ]
+source_file="res://assets/environment_assets/test/dirt_E_green.png"
+dest_files=[ "res://.import/dirt_E_green.png-58fc0f1d820489ee90a9fc2c41c91c44.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
