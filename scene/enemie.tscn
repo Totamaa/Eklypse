@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/platformer_sprites/platformer_sprites/Enemys/grousk.png" type="Texture" id=1]
+[ext_resource path="res://assets/monsters/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://script/enemie.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
-resource_name = "idle"
-length = 0.4
-loop = true
+length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -14,45 +12,94 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
 }
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 19.7085
+[sub_resource type="Animation" id=2]
+length = 0.38
+loop = true
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 9, 8, 7, 6, 5, 4, 3, 2, 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "run_downLeft"
+
+[sub_resource type="Animation" id=5]
+resource_name = "run_downRight"
+
+[sub_resource type="Animation" id=6]
+resource_name = "run_upLeft"
+
+[sub_resource type="Animation" id=7]
+resource_name = "run_upRight"
+
+[sub_resource type="Animation" id=8]
+resource_name = "walk_downLeft"
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk_downRight"
+
+[sub_resource type="Animation" id=10]
+resource_name = "walk_upLeft"
+
+[sub_resource type="Animation" id=11]
+resource_name = "walk_upRight"
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 17.6019
 
 [node name="enemi" type="KinematicBody2D"]
 position = Vector2( -0.314972, 0 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -5, 0 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
-hframes = 5
+hframes = 6
+vframes = 5
 frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 1 )
+anims/RESET = SubResource( 1 )
+anims/idle = SubResource( 2 )
+anims/run_downLeft = SubResource( 4 )
+anims/run_downRight = SubResource( 5 )
+anims/run_upLeft = SubResource( 6 )
+anims/run_upRight = SubResource( 7 )
+anims/walk_downLeft = SubResource( 8 )
+anims/walk_downRight = SubResource( 9 )
+anims/walk_upLeft = SubResource( 10 )
+anims/walk_upRight = SubResource( 11 )
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PoolVector2Array( 394.5, 71.2218, 328.283, 153.33 )
 default_color = Color( 0.952941, 0.101961, 0.0156863, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -3.70813, -2.11893 )
-shape = SubResource( 2 )
+position = Vector2( -2.42407, -14.7402 )
+shape = SubResource( 3 )
 one_way_collision_margin = 7.5
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = -36.9142
-margin_top = -49.4251
-margin_right = 29.0858
-margin_bottom = -35.4251
+margin_left = -25.0
+margin_top = -60.0
+margin_right = 25.0
+margin_bottom = -50.0
 step = 1.0
 value = 100.0
 percent_visible = false
