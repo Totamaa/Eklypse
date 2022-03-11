@@ -21,7 +21,9 @@ tile_data = PoolIntArray( -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-[node name="Player" parent="." groups=["Persist"] instance=ExtResource( 4 )]
+[node name="Player" parent="." groups=[
+"Persist",
+] instance=ExtResource( 4 )]
 position = Vector2( 646, 347 )
 rotation = -0.106446
 

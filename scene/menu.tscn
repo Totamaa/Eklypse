@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://script/menu.gd" type="Script" id=1]
+
+[node name="menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -100.0
+margin_right = 128.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bContinuer" type="Button" parent="VBoxContainer"]
+margin_right = 108.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../bQuitter")
+text = "continuer"
+
+[node name="bNouvellePartie" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 108.0
+margin_bottom = 44.0
+text = "nouvelle partie"
+
+[node name="bOptions" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 108.0
+margin_bottom = 68.0
+text = "options"
+
+[node name="bQuitter" type="Button" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 108.0
+margin_bottom = 92.0
+focus_neighbour_bottom = NodePath("../bContinuer")
+text = "quitter"
+
+[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bContinuer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bJouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_jouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bNouvellePartie_pressed"]
+[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bJouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_jouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bOptions" to="." method="_on_bOptions_pressed"]
+[connection signal="pressed" from="VBoxContainer/bOptions" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/bQuitter" to="." method="_on_bQuitter_pressed"]
+[connection signal="pressed" from="VBoxContainer/bQuitter" to="." method="_on_quitter_pressed"]
