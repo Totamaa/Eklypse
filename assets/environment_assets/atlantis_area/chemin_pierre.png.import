@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chemin_pierre.png-d52bc3689dd6b67fc235566cdf1ccf2b.stex"
+path="res://.import/chemin_pierre.png-a566d75fc450dc65848720dda5db6258.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/environment_assets/atlantis_area/chemin_pierre.png"
-dest_files=[ "res://.import/chemin_pierre.png-d52bc3689dd6b67fc235566cdf1ccf2b.stex" ]
+source_file="res://assets/environment_assets/atlantis_area/chemin_pierre.png"
+dest_files=[ "res://.import/chemin_pierre.png-a566d75fc450dc65848720dda5db6258.stex" ]
 
 [params]
 

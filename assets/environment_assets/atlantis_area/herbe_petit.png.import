@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/herbe_petit.png-1ba975fab56a0b5cf7a43363fcfb1f2a.stex"
+path="res://.import/herbe_petit.png-18566f29b35785d286fa32879a77956e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/environment_assets/atlantis_area/herbe_petit.png"
-dest_files=[ "res://.import/herbe_petit.png-1ba975fab56a0b5cf7a43363fcfb1f2a.stex" ]
+source_file="res://assets/environment_assets/atlantis_area/herbe_petit.png"
+dest_files=[ "res://.import/herbe_petit.png-18566f29b35785d286fa32879a77956e.stex" ]
 
 [params]
 

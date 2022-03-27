@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/—Pngtree—bright light effect_5054239.png-43cb5c62fed46b40ab6c4371d83cc34f.stex"
+path="res://.import/—Pngtree—bright light effect_5054239.png-840a5d43b597e25c91e014c304a36a44.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/lights/—Pngtree—bright light effect_5054239.png"
-dest_files=[ "res://.import/—Pngtree—bright light effect_5054239.png-43cb5c62fed46b40ab6c4371d83cc34f.stex" ]
+source_file="res://assets/lights/—Pngtree—bright light effect_5054239.png"
+dest_files=[ "res://.import/—Pngtree—bright light effect_5054239.png-840a5d43b597e25c91e014c304a36a44.stex" ]
 
 [params]
 

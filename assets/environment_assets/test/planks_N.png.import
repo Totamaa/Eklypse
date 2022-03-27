@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/planks_N.png-4c6e1382ffe47cb5f46f333cf2f45fb9.stex"
+path="res://.import/planks_N.png-e1aff1202efab430b44eb7be81c71713.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/environment_assets/test/planks_N.png"
-dest_files=[ "res://.import/planks_N.png-4c6e1382ffe47cb5f46f333cf2f45fb9.stex" ]
+source_file="res://assets/environment_assets/test/planks_N.png"
+dest_files=[ "res://.import/planks_N.png-e1aff1202efab430b44eb7be81c71713.stex" ]
 
 [params]
 

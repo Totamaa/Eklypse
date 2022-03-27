@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Rocher1.png-88210357bffd0524564de6ab1686efd7.stex"
+path="res://.import/Rocher1.png-12f7fcbb18d12101d39864114c9fbe03.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/environment_assets/atlantis_area/Rocher1.png"
-dest_files=[ "res://.import/Rocher1.png-88210357bffd0524564de6ab1686efd7.stex" ]
+source_file="res://assets/environment_assets/atlantis_area/Rocher1.png"
+dest_files=[ "res://.import/Rocher1.png-12f7fcbb18d12101d39864114c9fbe03.stex" ]
 
 [params]
 

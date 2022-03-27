@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sponny_without_hand.png-c6e29651e3f3732988c46a3fd422243b.stex"
+path="res://.import/sponny_without_hand.png-2473f7ab4258873c4114f0c3a3ae2647.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/player_assets/sponny_without_hand.png"
-dest_files=[ "res://.import/sponny_without_hand.png-c6e29651e3f3732988c46a3fd422243b.stex" ]
+source_file="res://assets/player_assets/sponny_without_hand.png"
+dest_files=[ "res://.import/sponny_without_hand.png-2473f7ab4258873c4114f0c3a3ae2647.stex" ]
 
 [params]
 
