@@ -8,6 +8,8 @@ export var speedNight = 200
 export var attackDay = 8
 export var attackNight = 12
 
+
+
 var Joueur # Le noeud du joueur
 var Nav # Le noeud de la navigation
 var detection = detectionDay
@@ -100,3 +102,10 @@ func animation(vel):
 	
 func getAttack():
 	return attack
+	
+#fonction des degats du mob
+func hit(damage : int):
+	mobMaxHealth -=damage 
+	if mobMaxHealth <= 0:
+		queue_free()
+	

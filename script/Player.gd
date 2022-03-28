@@ -3,11 +3,13 @@ extends KinematicBody2D
 export var speed = 200
 export var timeToBeHealth = 3 # temps avant que le joueur se heal en secondes
 
+
 var velocity = Vector2()
 var mouse_position = Vector2()
 var timeBeforeHealt = timeToBeHealth * 60
 
 onready var last_healt = $GUI/life.value
+onready var weapon = $Weapon
 
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
 func _physics_process(_delta):
@@ -74,6 +76,13 @@ func _on_hitbox_body_entered(body):
 		$GUI/life.value -= get_parent().get_node("enemi").attack
 		timeBeforeHealt = timeToBeHealth * 60
 
+#fonction pour l'attque
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("f_attack"):
+		weapon.attack()
+		
+	
 
 # fonction mal faites du dialogue
 func _on_GUI_yes():

@@ -1,3 +1,65 @@
-[gd_resource type="TileSet" format=2]
+[gd_resource type="TileSet" load_steps=3 format=2]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 128, 384, 0, 448, 128, 512, 256, 448 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 128, 384, 128, 384, 0, 448, 128, 512, 256, 448 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
 
 [resource]
+0/name = "DirtE"
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 256, 512 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 128, 256 )
+0/navigation_offset = Vector2( 0, -8 )
+0/navigation = SubResource( 1 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "PlanksBrokenN"
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 256, 512 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 128, 256 )
+1/navigation_offset = Vector2( 128, 256 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "PlanksN"
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 256, 512 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 128, 256 )
+2/navigation_offset = Vector2( 128, 256 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "dirt_E_green.png 3"
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 256, 512 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, -8 )
+3/navigation = SubResource( 2 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
