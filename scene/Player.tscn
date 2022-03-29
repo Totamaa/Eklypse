@@ -112,6 +112,9 @@ tracks/0/keys = {
 position = Vector2( 511.948, 300.656 )
 scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 speed = 400
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

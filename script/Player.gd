@@ -20,6 +20,7 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity)
 
 	$Weapon.look_at(mouse_position)
+	$bras.look_at(mouse_position)
 	
 	# vie du perso
 	if $GUI/life.value == last_healt and $GUI/life.value < $GUI/life.max_value:

@@ -7,7 +7,7 @@ export var speedDay = 125
 export var speedNight = 200
 export var attackDay = 8
 export var attackNight = 12
-
+export var timeToBeHealth = 5
 
 
 var Joueur # Le noeud du joueur
@@ -17,6 +17,10 @@ var speed = speedDay
 var attack = attackDay
 var distance
 var vel = Vector2()
+var timeBeforeHealt = timeToBeHealth * 60
+
+
+onready var last_healt = $ProgressBar.value
 
 
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
@@ -59,6 +63,13 @@ func _physics_process(delta):
 	#affiche la barre de vie des monstres si elle est <100
 	$ProgressBar.hide() if $ProgressBar.value == 100 else $ProgressBar.show()
 	
+	# vie du mob
+	if $ProgressBar.value == last_healt and $ProgressBar.value < $ProgressBar.max_value:
+		timeBeforeHealt -= 1
+		if timeBeforeHealt <= 0:
+			$ProgressBar.value += 0.5
+	last_healt = $ProgressBar.value
+	
 
 # fonction qui calcule la distance entre tous les points d'un tableau
 func calcul_distance(chemin:PoolVector2Array):
@@ -99,13 +110,12 @@ func animation(vel):
 		$Sprite.flip_h = true
 	else:
 		$Sprite.flip_h = false
-	
-func getAttack():
-	return attack
+
 	
 #fonction des degats du mob
 func hit(damage : int):
 	$ProgressBar.value -= damage 
+	timeBeforeHealt = timeToBeHealth * 60
 	if $ProgressBar.value <= 0:
 		queue_free()
 	
