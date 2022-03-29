@@ -9,6 +9,7 @@ enum {JOUR, NUIT}
 const SAVING_SCRIPT = preload("res://script/save.gd")
 
 export var spawn = 6 # Timer des monstres
+export var nbEnemyMax = 3
 export var duree_day = 1 # en minutes
 export var color_day = Color("#ffffff")
 export var color_night = Color("#9a7bc4")
@@ -19,6 +20,7 @@ var hours = 0
 var nb_day = 0
 var cycle = JOUR
 
+
 export(PackedScene) var mob_scene
 
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
@@ -26,6 +28,7 @@ func _ready():
 	length_day = 60 * 60 * duree_day # 60 ticks par seconde et 60 secondes par minute
 	#tick = length_day / 2 # la moitié du jour: débute a midi
 	$Player/Light2D.hide()
+	$MobTimer.wait_time = spawn
 
 
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
@@ -131,9 +134,8 @@ func _on_Game_tree_exited():
 
 
 
-# ça marche paaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas
 func _on_MobTimer_timeout():
-
+		
 	# On choisit un endroit random sur le path du mob 
 	var mob_spawn_location = $MobPath/MobSpawnhLocation
 	mob_spawn_location.offset = randi()
@@ -141,3 +143,6 @@ func _on_MobTimer_timeout():
 	# On instancie un mob
 	var mob = mob_scene.instance()
 	add_child(mob)
+	
+	# On le place a l'endroit random
+	mob.position = mob_spawn_location.position
