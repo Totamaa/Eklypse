@@ -8,6 +8,7 @@ enum {JOUR, NUIT}
 # Chemin du script pour les fonctions de sauvegarde
 const SAVING_SCRIPT = preload("res://script/save.gd")
 
+export var spawn = 6 # Timer des monstres
 export var duree_day = 1 # en minutes
 export var color_day = Color("#ffffff")
 export var color_night = Color("#9a7bc4")
@@ -18,6 +19,7 @@ var hours = 0
 var nb_day = 0
 var cycle = JOUR
 
+export(PackedScene) var mob_scene
 
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
 func _ready():
@@ -69,8 +71,11 @@ func cycle_test(new_cycle):
 				twe.start()
 				yield(twe, 'tween_completed')
 				remove_child(twe)
+				
 
 			$Player/Light2D.show()
+			
+			$MobTimer.wait_time = spawn / 2
 
 			# signal pour les autres objets
 			emit_signal("night")
@@ -88,6 +93,8 @@ func cycle_test(new_cycle):
 
 			# signal pour les autres objets
 			emit_signal("day")
+			
+			$MobTimer.wait_time = spawn
 
 
 # Quand on entre dans le jeu (à modifier quand le joueur pourra choisir "nouvelle partie" ou "charger partie"
@@ -122,4 +129,15 @@ func _on_Game_tree_exited():
 	# On appelle la fonction qui permet de sauvegarder les données
 	SAVING_SCRIPT.save_on_quit(world_data, get_node("Player").get_property())
 
-			
+
+
+# ça marche paaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas
+func _on_MobTimer_timeout():
+
+	# On choisit un endroit random sur le path du mob 
+	var mob_spawn_location = $MobPath/MobSpawnhLocation
+	mob_spawn_location.offset = randi()
+
+	# On instancie un mob
+	var mob = mob_scene.instance()
+	add_child(mob)

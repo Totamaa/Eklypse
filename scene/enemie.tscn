@@ -65,9 +65,11 @@ radius = 17.6019
 [node name="enemi" type="KinematicBody2D"]
 position = Vector2( -0.314972, 0 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -5, 0 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 6
@@ -91,7 +93,7 @@ points = PoolVector2Array( 394.5, 71.2218, 328.283, 153.33 )
 default_color = Color( 0.952941, 0.101961, 0.0156863, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2.42407, -14.7402 )
+position = Vector2( 3, -15 )
 shape = SubResource( 11 )
 one_way_collision_margin = 7.5
 
@@ -105,3 +107,13 @@ value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="VisibilityNotifier2D"]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
+[connection signal="timeout" from="VisibilityNotifier2D/Timer" to="." method="_on_Timer_timeout"]

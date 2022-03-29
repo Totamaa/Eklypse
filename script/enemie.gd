@@ -118,4 +118,15 @@ func hit(damage : int):
 	timeBeforeHealt = timeToBeHealth * 60
 	if $ProgressBar.value <= 0:
 		queue_free()
-	
+
+
+#func _on_VisibilityNotifier2D_viewport_exited(viewport):
+#	$VisibilityNotifier2D/Timer.start()
+
+
+func _on_Timer_timeout():
+	queue_free()
+
+
+func _on_VisibilityNotifier2D_viewport_entered(viewport):
+	$VisibilityNotifier2D/Timer.stop()
