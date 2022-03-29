@@ -63,7 +63,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 5.83334, 25 )
+extents = Vector2( 11.8684, 13.2594 )
 
 [sub_resource type="Animation" id=7]
 length = 0.001
@@ -109,12 +109,9 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 520, 387 )
+position = Vector2( 511.948, 300.656 )
 scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 speed = 400
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -150,9 +147,6 @@ hframes = 10
 vframes = 2
 frame = 8
 
-[node name="Position2D" type="Position2D" parent="bras"]
-position = Vector2( 31.5336, -1.47156 )
-
 [node name="animBras" type="AnimationPlayer" parent="bras"]
 anims/recule = SubResource( 5 )
 
@@ -160,7 +154,7 @@ anims/recule = SubResource( 5 )
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
-position = Vector2( 32.5, 0.833282 )
+position = Vector2( 29.0876, 6.08295 )
 shape = SubResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
@@ -174,6 +168,9 @@ texture = ExtResource( 4 )
 hframes = 19
 vframes = 2
 frame = 34
+
+[node name="Position2D" type="Position2D" parent="Weapon"]
+position = Vector2( 26.5336, 7.52844 )
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="yes" from="GUI" to="." method="_on_GUI_yes"]

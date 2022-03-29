@@ -19,7 +19,7 @@ func _physics_process(_delta):
 	# déplacement du joueur
 	velocity = move_and_slide(velocity)
 
-	$bras.look_at(mouse_position)
+	$Weapon.look_at(mouse_position)
 	
 	# vie du perso
 	if $GUI/life.value == last_healt and $GUI/life.value < $GUI/life.max_value:
@@ -33,7 +33,7 @@ func _physics_process(_delta):
 func get_input():
 	# bras qui suit la souris
 	mouse_position = get_global_mouse_position()
-	var ligne_shoot = mouse_position - $bras/Position2D.global_position
+	var ligne_shoot = mouse_position - $Weapon/Position2D.global_position
 	var rota = ligne_shoot.angle()
 	
 	# déplacement + animation

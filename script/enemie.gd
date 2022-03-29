@@ -105,7 +105,7 @@ func getAttack():
 	
 #fonction des degats du mob
 func hit(damage : int):
-	mobMaxHealth -=damage 
-	if mobMaxHealth <= 0:
+	$ProgressBar.value -= damage 
+	if $ProgressBar.value <= 0:
 		queue_free()
 	

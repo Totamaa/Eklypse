@@ -35,31 +35,31 @@ tracks/0/keys = {
 "values": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 9, 8, 7, 6, 5, 4, 3, 2, 1 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "run_downLeft"
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "run_downRight"
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "run_upLeft"
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "run_upRight"
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "walk_downLeft"
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 resource_name = "walk_downRight"
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 resource_name = "walk_upLeft"
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=10]
 resource_name = "walk_upRight"
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=11]
 radius = 17.6019
 
 [node name="enemi" type="KinematicBody2D"]
@@ -77,14 +77,14 @@ frame = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/idle = SubResource( 2 )
-anims/run_downLeft = SubResource( 4 )
-anims/run_downRight = SubResource( 5 )
-anims/run_upLeft = SubResource( 6 )
-anims/run_upRight = SubResource( 7 )
-anims/walk_downLeft = SubResource( 8 )
-anims/walk_downRight = SubResource( 9 )
-anims/walk_upLeft = SubResource( 10 )
-anims/walk_upRight = SubResource( 11 )
+anims/run_downLeft = SubResource( 3 )
+anims/run_downRight = SubResource( 4 )
+anims/run_upLeft = SubResource( 5 )
+anims/run_upRight = SubResource( 6 )
+anims/walk_downLeft = SubResource( 7 )
+anims/walk_downRight = SubResource( 8 )
+anims/walk_upLeft = SubResource( 9 )
+anims/walk_upRight = SubResource( 10 )
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PoolVector2Array( 394.5, 71.2218, 328.283, 153.33 )
@@ -92,7 +92,7 @@ default_color = Color( 0.952941, 0.101961, 0.0156863, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2.42407, -14.7402 )
-shape = SubResource( 3 )
+shape = SubResource( 11 )
 one_way_collision_margin = 7.5
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -102,7 +102,6 @@ margin_right = 25.0
 margin_bottom = -50.0
 step = 1.0
 value = 100.0
-percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
