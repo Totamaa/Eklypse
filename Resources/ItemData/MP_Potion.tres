@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://scene/ItemData.gd" type="Script" id=1]
+[ext_resource path="res://Resources/ItemWorldSprites/PotionsWorldSpriteSheet.png" type="Texture" id=2]
+[ext_resource path="res://Resources/ItemInventorySprites/PotionsInventorySpriteSheet.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[resource]
+script = ExtResource( 1 )
+damage_type = 1
+damage = -10
+item_name = "Mana Potion"
+description = "Mana potion 10MP"
+price = 0
+world_texture = SubResource( 2 )
+inventory_texture = SubResource( 1 )

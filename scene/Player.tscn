@@ -7,7 +7,7 @@
 [ext_resource path="res://scene/Weapon.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.6367, 23.9886 )
+extents = Vector2( 14.6367, 26.3043 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -43,7 +43,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 16.7179, 25.1778 )
+extents = Vector2( 16.7179, 26.1849 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "recule"
@@ -109,7 +109,7 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 511.948, 300.656 )
+position = Vector2( 514, 289 )
 scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -119,6 +119,7 @@ speed = 400
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2( 0, 2.3157 )
 shape = SubResource( 1 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="."]
@@ -138,7 +139,7 @@ smoothing_speed = 7.0
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2( 0, 0.594604 )
+position = Vector2( 0, 1.60172 )
 shape = SubResource( 4 )
 
 [node name="GUI" parent="." instance=ExtResource( 3 )]

@@ -30,6 +30,9 @@ func _ready():
 	$Player/Light2D.hide()
 	$MobTimer.wait_time = spawn
 
+func _input(event):
+	if event.is_action_pressed("inventory"):
+		$Inventory.print_inventory()
 
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
 func _physics_process(delta):
@@ -50,7 +53,7 @@ func day_cycle():
 	else:
 		cycle_test(JOUR)
 	
-	print(str(tick) + "     -     " + str(hours) + " - " + str(cycle)) # debug
+#	print(str(tick) + "     -     " + str(hours) + " - " + str(cycle)) # debug
 
 
 # Fonction pour le changement de cycle
