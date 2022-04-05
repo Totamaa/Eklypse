@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/SeekPng.com_light-shine-png_172580.png" type="Texture" id=1]
 [ext_resource path="res://script/Game.gd" type="Script" id=2]
@@ -6,15 +6,24 @@
 [ext_resource path="res://scene/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scene/Pnj.tscn" type="PackedScene" id=5]
 [ext_resource path="res://tiles/.tres" type="TileSet" id=6]
-[ext_resource path="res://scene/Inventory.gd" type="Script" id=9]
-[ext_resource path="res://scene/MobSpawnhLocation.gd" type="Script" id=11]
+[ext_resource path="res://Resources/ItemData/HP_Potion.tres" type="Resource" id=7]
+[ext_resource path="res://scene/Item.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scene/Inventory.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Resources/ItemData/MP_Potion.tres" type="Resource" id=10]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -64, -64, 0, 0, 0, 0, 1088, -64, 0, 0, 0, 0, 1088, 640, 0, 0, 0, 0, -64, 640, 0, 0, 0, 0, -64, -64 )
 }
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="GDScript" id=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends PathFollow2D
+
+
+
+"
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -31,7 +40,9 @@ tile_data = PoolIntArray( -589825, 0, 0, -655360, 0, 0, -524289, 0, 0, -589824, 
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-[node name="Player" parent="." groups=["Joueur"] instance=ExtResource( 4 )]
+[node name="Player" parent="." groups=[
+"Joueur",
+] instance=ExtResource( 4 )]
 position = Vector2( 646, 347 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
@@ -50,180 +61,37 @@ wait_time = 12.0
 autostart = true
 
 [node name="MobPath" type="Path2D" parent="."]
+position = Vector2( -2, 0 )
 curve = SubResource( 1 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="MobSpawnhLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2( -64, -64 )
 rotation = 9.71019e-07
-script = ExtResource( 11 )
+script = SubResource( 3 )
 
-[node name="Inventory" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Item" parent="." groups=[
+"collectables",
+] instance=ExtResource( 8 )]
+position = Vector2( 542, 60 )
+item_data = ExtResource( 7 )
 
-[node name="ColorRect" type="ColorRect" parent="Inventory"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 176, 68 )
-color = Color( 0.321569, 0.207843, 0.207843, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Item2" parent="." groups=[
+"collectables",
+] instance=ExtResource( 8 )]
+position = Vector2( 843, 397 )
+item_data = ExtResource( 7 )
 
-[node name="GridContainer" type="GridContainer" parent="Inventory"]
-margin_right = 40.0
-margin_bottom = 40.0
-columns = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Inventory" parent="." instance=ExtResource( 9 )]
 
-[node name="Slot1" type="Panel" parent="Inventory/GridContainer"]
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot1"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Slot2" type="Panel" parent="Inventory/GridContainer"]
-margin_left = 36.0
-margin_right = 68.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot2"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Slot3" type="Panel" parent="Inventory/GridContainer"]
-margin_left = 72.0
-margin_right = 104.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot3"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Slot4" type="Panel" parent="Inventory/GridContainer"]
-margin_left = 108.0
-margin_right = 140.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot4"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Slot5" type="Panel" parent="Inventory/GridContainer"]
-margin_left = 144.0
-margin_right = 176.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot5"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Slot6" type="Panel" parent="Inventory/GridContainer"]
-margin_top = 36.0
-margin_right = 32.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot6"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Slot7" type="Panel" parent="Inventory/GridContainer"]
-margin_left = 36.0
-margin_top = 36.0
-margin_right = 68.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot7"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Slot8" type="Panel" parent="Inventory/GridContainer"]
-margin_left = 72.0
-margin_top = 36.0
-margin_right = 104.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot8"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Slot9" type="Panel" parent="Inventory/GridContainer"]
-margin_left = 108.0
-margin_top = 36.0
-margin_right = 140.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot9"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Slot10" type="Panel" parent="Inventory/GridContainer"]
-margin_left = 144.0
-margin_top = 36.0
-margin_right = 176.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 32, 32 )
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Inventory/GridContainer/Slot10"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Item3" parent="." groups=[
+"collectables",
+] instance=ExtResource( 8 )]
+position = Vector2( 623, -109 )
+item_data = ExtResource( 10 )
 
 [connection signal="tree_entered" from="." to="." method="_on_Game_tree_entered"]
 [connection signal="tree_exited" from="." to="." method="_on_Game_tree_exited"]
