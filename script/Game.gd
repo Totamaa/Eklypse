@@ -8,8 +8,8 @@ enum {JOUR, NUIT}
 # Chemin du script pour les fonctions de sauvegarde
 const SAVING_SCRIPT = preload("res://script/save.gd")
 
-export var spawn = 6 # Timer des monstres
-export var nbEnemyMax = 3
+export var spawn = 1 # Timer des monstres
+export var nbEnemyMax = 6
 export var duree_day = 1 # en minutes
 export var color_day = Color("#ffffff")
 export var color_night = Color("#9a7bc4")
@@ -143,9 +143,10 @@ func _on_MobTimer_timeout():
 	var mob_spawn_location = $MobPath/MobSpawnhLocation
 	mob_spawn_location.offset = randi()
 
-	# On instancie un mob
-	var mob = mob_scene.instance()
-	add_child(mob)
-	
-	# On le place a l'endroit random
-	mob.position = mob_spawn_location.position
+	if get_tree().get_nodes_in_group("enemy").size() < nbEnemyMax:
+		# On instancie un mob
+		var mob = mob_scene.instance()
+		add_child(mob)
+		
+		# On le place a l'endroit random
+		mob.position = mob_spawn_location.position
