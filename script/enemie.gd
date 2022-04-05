@@ -18,6 +18,8 @@ var attack = attackDay
 var distance
 var vel = Vector2()
 var timeBeforeHealt = timeToBeHealth * 60
+var random = RandomNumberGenerator.new()
+onready var _droped_item = preload("res://scene/Item.tscn")
 
 
 onready var last_healt = $ProgressBar.value
@@ -117,6 +119,15 @@ func hit(damage : int):
 	$ProgressBar.value -= damage 
 	timeBeforeHealt = timeToBeHealth * 60
 	if $ProgressBar.value <= 0:
+		random.randomize()
+		if random.randi_range(1,1) == 1:
+			var droped_item = _droped_item.instance()
+			droped_item.set_item_data(load("res://Resources/ItemData/HP_Potion.tres"))
+			get_parent().add_child(droped_item)
+			droped_item.add_to_group("collectables")
+			droped_item.global_position = get_parent().get_node("enemi").global_position
+			print(get_tree().get_nodes_in_group("collectables"))
+			get_parent().get_node("Inventory").get_collectables()
 		queue_free()
 
 

@@ -17,10 +17,12 @@ class ItemAmout:
 func _ready():
 	self.hide()
 	empty_style.bg_color = empty_style_color
-	for col in get_tree().get_nodes_in_group("collectables"):
-		col.connect("playerEntered", self, "_append_item")
 	for elt in $GridContainer.get_children():
 		elt.set("custom_styles/panel", empty_style)
+		
+func get_collectables():
+	for col in get_tree().get_nodes_in_group("collectables"):
+		col.connect("playerEntered", self, "_append_item")
 		
 func _process(delta):
 	var x = get_parent().get_node("Player").position.x - $GridContainer.get_rect().size.x / 2

@@ -12,6 +12,7 @@ func set_item_data(value: Resource) -> void:
 func get_item_data() -> Resource:
 	return item_data
 
+
 func _on_Area2D_area_entered(area):
 	emit_signal("playerEntered", item_data)
 	queue_free()
