@@ -1,17 +1,17 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://assets/platformer_sprites/platformer_sprites/sponny_without_hand.png" type="Texture" id=1]
+[ext_resource path="res://assets/perso/Character_SpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://script/Player.gd" type="Script" id=2]
 [ext_resource path="res://scene/GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/player_assets/sponny_without_hand.png" type="Texture" id=4]
-[ext_resource path="res://scene/Weapon.gd" type="Script" id=5]
+[ext_resource path="res://script/Weapon.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14.6367, 26.3043 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
-loop = true
+[sub_resource type="Animation" id=10]
+resource_name = "attack_down"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -19,14 +19,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walk"
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -42,30 +42,61 @@ tracks/0/keys = {
 "values": [ 2, 3, 2, 4 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 16.7179, 26.1849 )
-
-[sub_resource type="Animation" id=5]
-resource_name = "recule"
-length = 0.12
-step = 0.01
+[sub_resource type="Animation" id=3]
+resource_name = "walk_down"
+loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.04, 0.08 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 8, 9, 8 ]
+"values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="Animation" id=8]
+resource_name = "walk_side"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19, 20 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk_up"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16.7179, 26.1849 )
+
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 11.8684, 13.2594 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -92,7 +123,7 @@ tracks/1/keys = {
 "values": [ 34 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "attack"
 length = 0.249
 tracks/0/type = "value"
@@ -123,13 +154,18 @@ position = Vector2( 0, 2.3157 )
 shape = SubResource( 1 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="."]
+anims/attack_down = SubResource( 10 )
 anims/idle = SubResource( 2 )
-anims/walk = SubResource( 3 )
+anims/walk_down = SubResource( 3 )
+anims/walk_side = SubResource( 8 )
+anims/walk_up = SubResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 1 )
-hframes = 10
-vframes = 2
+hframes = 8
+vframes = 4
+frame = 8
 region_rect = Rect2( 64, 64, 64, 64 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -144,26 +180,16 @@ shape = SubResource( 4 )
 
 [node name="GUI" parent="." instance=ExtResource( 3 )]
 
-[node name="bras" type="Sprite" parent="."]
-position = Vector2( -5, 9 )
-texture = ExtResource( 1 )
-hframes = 10
-vframes = 2
-frame = 8
-
-[node name="animBras" type="AnimationPlayer" parent="bras"]
-anims/recule = SubResource( 5 )
-
 [node name="Weapon" type="Area2D" parent="."]
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
 position = Vector2( 29.0876, 6.08295 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
-anims/RESET = SubResource( 7 )
-anims/attack = SubResource( 8 )
+anims/RESET = SubResource( 6 )
+anims/attack = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Weapon"]
 position = Vector2( 7.17169, 10.8333 )

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=6 format=2]
 
-[ext_resource path="res://scene/ItemData.gd" type="Script" id=1]
+[ext_resource path="res://script/ItemData.gd" type="Script" id=1]
 [ext_resource path="res://Resources/ItemWorldSprites/PotionsWorldSpriteSheet.png" type="Texture" id=2]
 [ext_resource path="res://Resources/ItemInventorySprites/PotionsInventorySpriteSheet.png" type="Texture" id=3]
 

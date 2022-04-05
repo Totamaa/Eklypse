@@ -20,7 +20,6 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity)
 
 	$Weapon.look_at(mouse_position)
-	$bras.look_at(mouse_position)
 	
 	# vie du perso
 	if $GUI/life.value == last_healt and $GUI/life.value < $GUI/life.max_value:
@@ -42,23 +41,19 @@ func get_input():
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
 		$Sprite.flip_h = false
-		$bras.flip_v = false
-		$bras.position.x = -5
-		$animPlayer.play("walk")
+		$animPlayer.play("walk_side")
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= 1
 		$Sprite.flip_h = true
-		$bras.flip_v = true
-		$bras.position.x = 5
-		$animPlayer.play("walk")
+		$animPlayer.play("walk_side")
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
-		$animPlayer.play("walk")
+		$animPlayer.play("walk_down")
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
-		$animPlayer.play("walk")
-	if velocity == Vector2(0, 0):
-		$animPlayer.play("idle")
+		$animPlayer.play("walk_up")
+#	if velocity == Vector2(0, 0):
+#		$animPlayer.play("idle")
 	velocity = velocity.normalized() * speed # normaliezd = vectreur de longueur 1
 	
 
@@ -74,7 +69,11 @@ func _on_hitbox_body_entered(body):
 	# collision avec un mob
 	if body.is_in_group("enemy"):
 		print("BAAAAAAAAAAM")
-		$GUI/life.value -= get_parent().get_node("enemi").attack
+		if get_parent().get_node("enemi").attack > $GUI/life.value:
+			$GUI/life.value -= get_parent().get_node("enemi").attack
+		else:
+			$GUI/life.value = 0
+			
 		timeBeforeHealt = timeToBeHealth * 60
 
 #fonction pour l'attque
@@ -82,6 +81,7 @@ func _on_hitbox_body_entered(body):
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("f_attack"):
 		weapon.attack()
+		$animPlayer.play("attack_down")
 		
 	
 
