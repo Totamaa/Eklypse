@@ -70,3 +70,5 @@ func print_inventory() -> void:
 	for item_amount in item_list:
 		print(item_amount.amount, "x ", item_amount.item.item_name)
 	print(" ")
+
+	

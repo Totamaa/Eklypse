@@ -5,6 +5,9 @@ export var damage = 50      #degats de base  pour test
 
 onready var anim = $AnimationPlayer
 
+func _ready():
+	$CollisionShape2D.disabled = true
+
 func attack():
 	anim.play("attack")
 	print("j'ai attaqué wesh")

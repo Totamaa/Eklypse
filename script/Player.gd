@@ -42,14 +42,14 @@ func get_input():
 		velocity.x += 1
 		$Sprite.flip_h = false
 		$animPlayer.play("walk_side")
-	if Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("ui_left"):
 		velocity.x -= 1
 		$Sprite.flip_h = true
 		$animPlayer.play("walk_side")
-	if Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed("ui_down"):
 		velocity.y += 1
 		$animPlayer.play("walk_down")
-	if Input.is_action_pressed("ui_up"):
+	elif Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
 		$animPlayer.play("walk_up")
 #	if velocity == Vector2(0, 0):
@@ -69,10 +69,10 @@ func _on_hitbox_body_entered(body):
 	# collision avec un mob
 	if body.is_in_group("enemy"):
 		print("BAAAAAAAAAAM")
-		if get_parent().get_node("enemi").attack > $GUI/life.value:
-			$GUI/life.value -= get_parent().get_node("enemi").attack
-		else:
+		if $GUI/life.value - get_parent().get_node("enemi").attack < 0:
 			$GUI/life.value = 0
+		else:
+			$GUI/life.value -= get_parent().get_node("enemi").attack
 			
 		timeBeforeHealt = timeToBeHealth * 60
 
