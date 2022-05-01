@@ -11,6 +11,9 @@ var timeBeforeHealt = timeToBeHealth * 60
 onready var last_healt = $GUI/life.value
 onready var weapon = $Weapon
 
+func _ready():
+	add_to_group("player")
+
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
 func _physics_process(_delta):
 	# gère les entrées claviées
@@ -42,14 +45,14 @@ func get_input():
 		velocity.x += 1
 		$Sprite.flip_h = false
 		$animPlayer.play("walk_side")
-	elif Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left"):
 		velocity.x -= 1
 		$Sprite.flip_h = true
 		$animPlayer.play("walk_side")
-	elif Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
 		$animPlayer.play("walk_down")
-	elif Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
 		$animPlayer.play("walk_up")
 #	if velocity == Vector2(0, 0):

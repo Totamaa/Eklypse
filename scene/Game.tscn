@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/SeekPng.com_light-shine-png_172580.png" type="Texture" id=1]
 [ext_resource path="res://script/Game.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scene/Item.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scene/Inventory.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Resources/ItemData/MP_Potion.tres" type="Resource" id=10]
+[ext_resource path="res://scene/tp.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -36,11 +37,13 @@ mode = 1
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 256, 128 )
 format = 1
-tile_data = PoolIntArray( -589825, 0, 0, -655360, 0, 0, -524289, 0, 0, -589824, 0, 0, -589823, 0, 0, -458753, 0, 0, -524288, 0, 0, -524287, 0, 0, -524286, 0, 0, -393218, 0, 0, -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -327683, 0, 0, -327682, 0, 0, -327681, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 0, 0, -393213, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 3, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -196603, 0, 0, -196602, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 3, 0, -131070, 3, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0 )
+tile_data = PoolIntArray( -589825, 0, 0, -655360, 0, 0, -524289, 0, 0, -589824, 0, 0, -589823, 0, 0, -458753, 0, 0, -524288, 0, 0, -524287, 0, 0, -524286, 0, 0, -393218, 0, 0, -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -327683, 0, 0, -327682, 0, 0, -327681, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 0, 0, -393213, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 3, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -196603, 0, 0, -196602, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 3, 0, -131070, 3, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 196603, 2, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-[node name="Player" parent="." groups=["Joueur"] instance=ExtResource( 4 )]
+[node name="Player" parent="." groups=[
+"Joueur",
+] instance=ExtResource( 4 )]
 position = Vector2( 646, 347 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
@@ -71,19 +74,28 @@ position = Vector2( -64, -64 )
 rotation = 9.71019e-07
 script = SubResource( 3 )
 
-[node name="Item" parent="." groups=["collectables"] instance=ExtResource( 8 )]
+[node name="Item" parent="." groups=[
+"collectables",
+] instance=ExtResource( 8 )]
 position = Vector2( 542, 60 )
 item_data = ExtResource( 7 )
 
-[node name="Item2" parent="." groups=["collectables"] instance=ExtResource( 8 )]
+[node name="Item2" parent="." groups=[
+"collectables",
+] instance=ExtResource( 8 )]
 position = Vector2( 843, 397 )
 item_data = ExtResource( 7 )
 
 [node name="Inventory" parent="." instance=ExtResource( 9 )]
 
-[node name="Item3" parent="." groups=["collectables"] instance=ExtResource( 8 )]
+[node name="Item3" parent="." groups=[
+"collectables",
+] instance=ExtResource( 8 )]
 position = Vector2( 623, -109 )
 item_data = ExtResource( 10 )
+
+[node name="tp" parent="." instance=ExtResource( 11 )]
+position = Vector2( -896, 248 )
 
 [connection signal="tree_entered" from="." to="." method="_on_Game_tree_entered"]
 [connection signal="tree_exited" from="." to="." method="_on_Game_tree_exited"]
