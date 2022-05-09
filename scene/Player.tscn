@@ -163,7 +163,7 @@ scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 4
-frame = 2
+frame = 5
 region_rect = Rect2( 64, 64, 64, 64 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

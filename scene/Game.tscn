@@ -18,6 +18,10 @@ _data = {
 }
 
 [sub_resource type="GDScript" id=2]
+script/source = "extends Path2D
+
+var a
+"
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends PathFollow2D
@@ -41,10 +45,8 @@ tile_data = PoolIntArray( -589825, 0, 0, -655360, 0, 0, -524289, 0, 0, -589824, 
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-[node name="Player" parent="." groups=[
-"Joueur",
-] instance=ExtResource( 4 )]
-position = Vector2( 646, 347 )
+[node name="Player" parent="." groups=["Joueur"] instance=ExtResource( 4 )]
+position = Vector2( 512, 304 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
 position = Vector2( -4.75974, 7.62607 )
@@ -65,32 +67,23 @@ autostart = true
 position = Vector2( -2, 0 )
 curve = SubResource( 1 )
 script = SubResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="MobSpawnhLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2( -64, -64 )
 rotation = 9.71019e-07
 script = SubResource( 3 )
 
-[node name="Item" parent="." groups=[
-"collectables",
-] instance=ExtResource( 8 )]
+[node name="Item" parent="." groups=["collectables"] instance=ExtResource( 8 )]
 position = Vector2( 542, 60 )
 item_data = ExtResource( 7 )
 
-[node name="Item2" parent="." groups=[
-"collectables",
-] instance=ExtResource( 8 )]
+[node name="Item2" parent="." groups=["collectables"] instance=ExtResource( 8 )]
 position = Vector2( 843, 397 )
 item_data = ExtResource( 7 )
 
 [node name="Inventory" parent="." instance=ExtResource( 9 )]
 
-[node name="Item3" parent="." groups=[
-"collectables",
-] instance=ExtResource( 8 )]
+[node name="Item3" parent="." groups=["collectables"] instance=ExtResource( 8 )]
 position = Vector2( 623, -109 )
 item_data = ExtResource( 10 )
 

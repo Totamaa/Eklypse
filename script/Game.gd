@@ -9,7 +9,7 @@ enum {JOUR, NUIT}
 const SAVING_SCRIPT = preload("res://script/save.gd")
 
 export var spawn = 1 # Timer des monstres
-export var nbEnemyMax = 6
+export var nbEnemyMax = 100000
 export var duree_day = 1 # en minutes
 export var color_day = Color("#ffffff")
 export var color_night = Color("#9a7bc4")
@@ -38,6 +38,7 @@ func _input(event):
 func _physics_process(delta):
 	tick += 1 # avance du temps
 	day_cycle()
+	$MobPath.global_position = Vector2.ZERO
 
 
 # fonction qui calcule la durée d'un cycle jour/nuit

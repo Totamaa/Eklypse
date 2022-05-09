@@ -44,19 +44,14 @@ func get_input():
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
 		$Sprite.flip_h = false
-		$animPlayer.play("walk_side")
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= 1
 		$Sprite.flip_h = true
-		$animPlayer.play("walk_side")
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
-		$animPlayer.play("walk_down")
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
-		$animPlayer.play("walk_up")
-#	if velocity == Vector2(0, 0):
-#		$animPlayer.play("idle")
+	playAnimation(velocity)
 	velocity = velocity.normalized() * speed # normaliezd = vectreur de longueur 1
 	
 
@@ -103,3 +98,13 @@ func get_property():
 	}
 	
 	return dict_propery
+
+func playAnimation(v):
+	if v.x == 1:
+		$animPlayer.play("walk_side")
+	elif v.x == -1:
+		$animPlayer.play("walk_side")
+	elif v.y == 1:
+		$animPlayer.play("walk_down")
+	elif v.y == -1:
+		$animPlayer.play("walk_up")

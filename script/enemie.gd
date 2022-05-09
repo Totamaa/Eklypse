@@ -131,8 +131,8 @@ func hit(damage : int):
 		queue_free()
 
 
-#func _on_VisibilityNotifier2D_viewport_exited(viewport):
-#	$VisibilityNotifier2D/Timer.start()
+func _on_VisibilityNotifier2D_viewport_exited(viewport):
+	$VisibilityNotifier2D/Timer.start()
 
 
 func _on_Timer_timeout():
