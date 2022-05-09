@@ -2,13 +2,14 @@ extends KinematicBody2D
 
 export var speed = 200
 export var timeToBeHealth = 3 # temps avant que le joueur se heal en secondes
+export var niveau = 1
 
 
 var velocity = Vector2()
 var mouse_position = Vector2()
 var timeBeforeHealt = timeToBeHealth * 60
 
-onready var last_healt = $GUI/life.value
+onready var last_healt = $GUI/VBoxContainer/HBox_HP/life.value
 onready var weapon = $Weapon
 
 func _ready():
@@ -25,11 +26,11 @@ func _physics_process(_delta):
 	$Weapon.look_at(mouse_position)
 	
 	# vie du perso
-	if $GUI/life.value == last_healt and $GUI/life.value < $GUI/life.max_value:
+	if $GUI/VBoxContainer/HBox_HP/life.value == last_healt and $GUI/VBoxContainer/HBox_HP/life.value < $GUI/VBoxContainer/HBox_HP/life.max_value:
 		timeBeforeHealt -= 1
 		if timeBeforeHealt <= 0:
-			$GUI/life.value += 0.5
-	last_healt = $GUI/life.value
+			$GUI/VBoxContainer/HBox_HP/life.value += 0.5
+	last_healt = $GUI/VBoxContainer/HBox_HP/life.value
 
 
 # fonction qui gère les entrées claviées
@@ -37,7 +38,7 @@ func get_input():
 	# bras qui suit la souris
 	mouse_position = get_global_mouse_position()
 	var ligne_shoot = mouse_position - $Weapon/Position2D.global_position
-	var rota = ligne_shoot.angle()
+	var _rota = ligne_shoot.angle()
 	
 	# déplacement + animation
 	velocity = Vector2()
@@ -66,11 +67,10 @@ func _on_hitbox_body_entered(body):
 		
 	# collision avec un mob
 	if body.is_in_group("enemy"):
-		print("BAAAAAAAAAAM")
-		if $GUI/life.value - get_parent().get_node("enemi").attack < 0:
-			$GUI/life.value = 0
+		if $GUI/VBoxContainer/HBox_HP/life.value - get_parent().get_node("enemi").attack < 0:
+			$GUI/VBoxContainer/HBox_HP/life.value = 0
 		else:
-			$GUI/life.value -= get_parent().get_node("enemi").attack
+			$GUI/VBoxContainer/HBox_HP/life.value -= get_parent().get_node("enemi").attack
 			
 		timeBeforeHealt = timeToBeHealth * 60
 
@@ -108,3 +108,17 @@ func playAnimation(v):
 		$animPlayer.play("walk_down")
 	elif v.y == -1:
 		$animPlayer.play("walk_up")
+
+
+func _on_GUI_level_up():
+	niveau += 1
+	$GUI/VBoxContainer/HBox_XP/xp.value = 0
+	$GUI/VBoxContainer/HBox_XP/xp.max_value += 50
+	speed += 1000
+	$GUI/VBoxContainer/HBox_HP/life.max_value += 20
+	$GUI/VBoxContainer/HBox_HP/life.value = $GUI/VBoxContainer/HBox_HP/life.max_value
+
+
+func _on_enemi_die():
+	print_debug($GUI/VBoxContainer/HBox_XP/xp.value)
+	$GUI/VBoxContainer/HBox_XP/xp.value += 20

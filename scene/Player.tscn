@@ -201,5 +201,6 @@ frame = 34
 position = Vector2( 26.5336, 7.52844 )
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="level_up" from="GUI" to="." method="_on_GUI_level_up"]
 [connection signal="yes" from="GUI" to="." method="_on_GUI_yes"]
 [connection signal="body_entered" from="Weapon" to="Weapon" method="_on_Weapon_body_entered"]

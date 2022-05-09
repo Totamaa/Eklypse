@@ -8,6 +8,7 @@ export var speedNight = 200
 export var attackDay = 8
 export var attackNight = 12
 export var timeToBeHealth = 5
+export var xpKill = 20
 
 
 var Joueur # Le noeud du joueur
@@ -19,11 +20,12 @@ var distance
 var vel = Vector2()
 var timeBeforeHealt = timeToBeHealth * 60
 var random = RandomNumberGenerator.new()
+
+
 onready var _droped_item = preload("res://scene/Item.tscn")
-
-
 onready var last_healt = $ProgressBar.value
 
+signal die
 
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
 func _ready():
@@ -126,9 +128,10 @@ func hit(damage : int):
 			get_parent().add_child(droped_item)
 			droped_item.add_to_group("collectables")
 			droped_item.global_position = get_parent().get_node("enemi").global_position
-			print(get_tree().get_nodes_in_group("collectables"))
 			get_parent().get_node("Inventory").get_collectables()
+		emit_signal("die")
 		queue_free()
+		
 
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):

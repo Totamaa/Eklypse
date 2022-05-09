@@ -46,7 +46,7 @@ tile_data = PoolIntArray( -589825, 0, 0, -655360, 0, 0, -524289, 0, 0, -589824, 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="Player" parent="." groups=["Joueur"] instance=ExtResource( 4 )]
-position = Vector2( 512, 304 )
+position = Vector2( 513, 301 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
 position = Vector2( -4.75974, 7.62607 )
@@ -92,4 +92,5 @@ position = Vector2( -896, 248 )
 
 [connection signal="tree_entered" from="." to="." method="_on_Game_tree_entered"]
 [connection signal="tree_exited" from="." to="." method="_on_Game_tree_exited"]
+[connection signal="die" from="enemi" to="Player" method="_on_enemi_die"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
