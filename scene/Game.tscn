@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/SeekPng.com_light-shine-png_172580.png" type="Texture" id=1]
 [ext_resource path="res://script/Game.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scene/Item.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scene/Inventory.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Resources/ItemData/MP_Potion.tres" type="Resource" id=10]
+[ext_resource path="res://scene/Container.gd" type="Script" id=11]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -58,7 +59,15 @@ position = Vector2( 72, 328 )
 wait_time = 12.0
 autostart = true
 
-[node name="MobPath" type="Path2D" parent="."]
+[node name="Container" type="Container" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MobPath" type="Path2D" parent="Container"]
 position = Vector2( -2, 0 )
 curve = SubResource( 1 )
 script = SubResource( 2 )
@@ -66,7 +75,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="MobSpawnhLocation" type="PathFollow2D" parent="MobPath"]
+[node name="MobSpawnhLocation" type="PathFollow2D" parent="Container/MobPath"]
 position = Vector2( -64, -64 )
 rotation = 9.71019e-07
 script = SubResource( 3 )

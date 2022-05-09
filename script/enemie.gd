@@ -127,7 +127,6 @@ func hit(damage : int):
 			droped_item.add_to_group("collectables")
 			droped_item.global_position = get_parent().get_node("enemi").global_position
 			print(get_tree().get_nodes_in_group("collectables"))
-			get_parent().get_node("Inventory").get_collectables()
 		queue_free()
 
 
