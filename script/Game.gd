@@ -9,7 +9,7 @@ enum {JOUR, NUIT}
 const SAVING_SCRIPT = preload("res://script/save.gd")
 
 export var spawn = 1 # Timer des monstres
-export var nbEnemyMax = 100000
+export var nbEnemyMax = 0
 export var duree_day = 1 # en minutes
 export var color_day = Color("#ffffff")
 export var color_night = Color("#9a7bc4")
@@ -141,7 +141,7 @@ func _on_Game_tree_exited():
 func _on_MobTimer_timeout():
 		
 	# On choisit un endroit random sur le path du mob 
-	var mob_spawn_location = $Container/MobPath/MobSpawnhLocation
+	var mob_spawn_location = $MobPath/MobSpawnhLocation
 	mob_spawn_location.offset = randi()
 
 	if get_tree().get_nodes_in_group("enemy").size() < nbEnemyMax:
