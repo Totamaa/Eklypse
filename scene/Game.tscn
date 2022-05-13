@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/SeekPng.com_light-shine-png_172580.png" type="Texture" id=1]
 [ext_resource path="res://script/Game.gd" type="Script" id=2]
@@ -16,19 +16,6 @@
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -64, -64, 0, 0, 0, 0, 1088, -64, 0, 0, 0, 0, 1088, 640, 0, 0, 0, 0, -64, 640, 0, 0, 0, 0, -64, -64 )
 }
-
-[sub_resource type="GDScript" id=2]
-script/source = "extends Path2D
-
-var a
-"
-
-[sub_resource type="GDScript" id=3]
-script/source = "extends PathFollow2D
-
-
-
-"
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -67,12 +54,13 @@ autostart = true
 [node name="MobPath" type="Path2D" parent="."]
 position = Vector2( -2, 0 )
 curve = SubResource( 1 )
-script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="MobSpawnhLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2( -64, -64 )
 rotation = 9.71019e-07
-script = SubResource( 3 )
 
 [node name="Item" parent="." groups=["collectables"] instance=ExtResource( 8 )]
 position = Vector2( 542, 60 )
