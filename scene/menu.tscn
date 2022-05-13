@@ -45,11 +45,11 @@ margin_bottom = 92.0
 focus_neighbour_bottom = NodePath("../bContinuer")
 text = "quitter"
 
-[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_jouer_pressed"]
 [connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bJouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_jouer_pressed"]
 [connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bContinuer_pressed"]
-[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_jouer_pressed"]
 [connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bJouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_jouer_pressed"]
 [connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bNouvellePartie_pressed"]
 [connection signal="pressed" from="VBoxContainer/bOptions" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/bOptions" to="." method="_on_bOptions_pressed"]
