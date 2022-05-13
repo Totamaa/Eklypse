@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/perso/Character_SpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://script/Player.gd" type="Script" id=2]
@@ -8,6 +8,19 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14.6367, 26.3043 )
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 24, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack_down"
@@ -25,6 +38,27 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 5, 6, 7, 4 ]
 }
+
+[sub_resource type="Animation" id=12]
+resource_name = "attack_left"
+length = 0.2
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 24, -0.25, 0, 0.25, 0, 29, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 31, -0.25, 0, 0.25, 0, 24, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 )
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "attack_right"
+
+[sub_resource type="Animation" id=14]
+resource_name = "attack_up"
 
 [sub_resource type="Animation" id=3]
 length = 0.8
@@ -152,7 +186,11 @@ position = Vector2( 0, 2.3157 )
 shape = SubResource( 1 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 11 )
 anims/attack_down = SubResource( 2 )
+anims/attack_left = SubResource( 12 )
+anims/attack_right = SubResource( 13 )
+anims/attack_up = SubResource( 14 )
 anims/idle = SubResource( 3 )
 anims/walk_down = SubResource( 4 )
 anims/walk_side = SubResource( 5 )
@@ -163,7 +201,7 @@ scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 4
-frame = 5
+frame = 24
 region_rect = Rect2( 64, 64, 64, 64 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -171,6 +209,7 @@ current = true
 smoothing_speed = 7.0
 
 [node name="hitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2( 0, 1.60172 )
@@ -179,6 +218,7 @@ shape = SubResource( 7 )
 [node name="GUI" parent="." instance=ExtResource( 3 )]
 
 [node name="Weapon" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]

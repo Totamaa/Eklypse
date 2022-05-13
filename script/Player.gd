@@ -3,6 +3,7 @@ extends KinematicBody2D
 export var speed = 200
 export var timeToBeHealth = 3 # temps avant que le joueur se heal en secondes
 export var niveau = 1
+export var degats = 20
 
 
 var velocity = Vector2()
@@ -77,9 +78,11 @@ func _on_hitbox_body_entered(body):
 #fonction pour l'attque
 
 func _unhandled_input(event: InputEvent) -> void:
+	for e in get_tree().get_nodes_in_group("enemy"):
+		e.connect("die", self, "_add_xp")
 	if event.is_action_pressed("f_attack"):
 		weapon.attack()
-		$animPlayer.play("attack_down")
+		annimAttack()
 		
 	
 
@@ -117,15 +120,27 @@ func _on_GUI_level_up():
 	niveau += 1
 	$GUI/VBoxContainer/HBox_XP/xp.value = 0
 	$GUI/VBoxContainer/HBox_XP/xp.max_value += 50
-	speed += 1000
+	speed += 1
+	degats += 1
 	$GUI/VBoxContainer/HBox_HP/life.max_value += 20
 	$GUI/VBoxContainer/HBox_HP/life.value = $GUI/VBoxContainer/HBox_HP/life.max_value
+	$GUI/VBoxContainer/niveau.set_text("Level: " + str(niveau))
 
 
-func _on_enemi_die():
+func _add_xp(xpKill):
 	"""
 	: ajout de l'xp au joueur quand il tue un ennemi
 	"""
-	print_debug($GUI/VBoxContainer/HBox_XP/xp.value)
-	$GUI/VBoxContainer/HBox_XP/xp.value += 20
-	print_debug($GUI/VBoxContainer/HBox_XP/xp.value)
+	$GUI/VBoxContainer/HBox_XP/xp.value += xpKill
+	
+
+func annimAttack():
+	"""
+	: animation de l'attaque du joueur
+	"""
+	mouse_position = get_global_mouse_position()
+	var ligne_shoot = mouse_position - $Weapon/Position2D.global_position
+	print_debug(ligne_shoot)
+	
+	
+	

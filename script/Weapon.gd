@@ -1,7 +1,7 @@
 extends Area2D
 
 
-export var damage = 50      #degats de base  pour test
+export var damage = 20 # degats de l'arme
 
 onready var anim = $AnimationPlayer
 
@@ -14,5 +14,4 @@ func attack():
 
 func _on_Weapon_body_entered(body):
 	if body.has_method("hit"):
-		body.hit(damage)
-		print("degats")
+		body.hit(damage + get_parent().degats)

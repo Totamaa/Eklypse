@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 export var mobMaxHealth = 100
-export var detectionDay = 400
-export var detectionNight = 800
+export var detectionDay = 800
+export var detectionNight = 1200
 export var speedDay = 125
 export var speedNight = 200
 export var attackDay = 8
@@ -123,7 +123,7 @@ func hit(damage : int):
 	
 	# si l'ennemi n'a plus de vie
 	if $ProgressBar.value <= 0:
-		emit_signal("die")
+		emit_signal("die", xpKill)
 		random.randomize()
 		if random.randi_range(1,1) == 1:
 			var droped_item = _droped_item.instance()
