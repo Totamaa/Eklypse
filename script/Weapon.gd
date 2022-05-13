@@ -10,7 +10,6 @@ func _ready():
 
 func attack():
 	anim.play("attack")
-	print("j'ai attaqué wesh")
 
 
 func _on_Weapon_body_entered(body):

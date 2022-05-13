@@ -111,6 +111,9 @@ func playAnimation(v):
 
 
 func _on_GUI_level_up():
+	"""
+	: Augmente les stats du joueurs quand il level up
+	"""
 	niveau += 1
 	$GUI/VBoxContainer/HBox_XP/xp.value = 0
 	$GUI/VBoxContainer/HBox_XP/xp.max_value += 50
@@ -120,5 +123,9 @@ func _on_GUI_level_up():
 
 
 func _on_enemi_die():
+	"""
+	: ajout de l'xp au joueur quand il tue un ennemi
+	"""
 	print_debug($GUI/VBoxContainer/HBox_XP/xp.value)
 	$GUI/VBoxContainer/HBox_XP/xp.value += 20
+	print_debug($GUI/VBoxContainer/HBox_XP/xp.value)

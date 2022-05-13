@@ -120,7 +120,10 @@ func animation(vel):
 func hit(damage : int):
 	$ProgressBar.value -= damage 
 	timeBeforeHealt = timeToBeHealth * 60
+	
+	# si l'ennemi n'a plus de vie
 	if $ProgressBar.value <= 0:
+		emit_signal("die")
 		random.randomize()
 		if random.randi_range(1,1) == 1:
 			var droped_item = _droped_item.instance()
@@ -129,7 +132,6 @@ func hit(damage : int):
 			droped_item.add_to_group("collectables")
 			droped_item.global_position = get_parent().get_node("enemi").global_position
 			get_parent().get_node("Inventory").get_collectables()
-		emit_signal("die")
 		queue_free()
 		
 

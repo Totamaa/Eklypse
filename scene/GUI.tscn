@@ -55,7 +55,7 @@ text = "HP"
 
 [node name="life" type="ProgressBar" parent="VBoxContainer/HBox_HP"]
 margin_left = 22.0
-margin_right = 122.0
+margin_right = 26.0
 margin_bottom = 14.0
 step = 1.0
 value = 100.0
@@ -72,8 +72,8 @@ margin_bottom = 14.0
 text = "XP"
 
 [node name="xp" type="ProgressBar" parent="VBoxContainer/HBox_XP"]
-margin_left = 22.0
-margin_right = 122.0
+margin_left = 20.0
+margin_right = 24.0
 margin_bottom = 14.0
 
 [connection signal="yes" from="." to="." method="_on_GUI_yes"]
