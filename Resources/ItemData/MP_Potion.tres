@@ -16,10 +16,12 @@ region = Rect2( 16, 0, 16, 16 )
 
 [resource]
 script = ExtResource( 1 )
+item_name = ""
+description = ""
+item_type = 0
 damage_type = 1
 damage = -10
-item_name = "Mana Potion"
-description = "Mana potion 10MP"
+effects = ""
 price = 0
 world_texture = SubResource( 2 )
 inventory_texture = SubResource( 1 )

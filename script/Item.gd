@@ -15,5 +15,5 @@ func get_item_data() -> Resource:
 
 func _on_Area2D_area_entered(area):
 	print("ok")
-	get_parent().get_node("Inventory").get_child(0).item_collected(self.item_data)
+	get_parent().get_node("Inventory").get_child(0).get_child(0).item_collected(self.item_data)
 	self.queue_free()

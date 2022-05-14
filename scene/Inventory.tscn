@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scene/ItemList.gd" type="Script" id=1]
-[ext_resource path="res://scene/Inventory.gd" type="Script" id=2]
+[ext_resource path="res://script/Inventory.gd" type="Script" id=2]
 [ext_resource path="res://Resources/fonts/alagard.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Resources/ItemInventorySprites/AnneauDebutant.png" type="Texture" id=4]
 
 [node name="Inventory" type="Control"]
 margin_right = 40.0
@@ -12,11 +13,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ItemList" type="ItemList" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 margin_left = 264.0
 margin_top = 104.0
-margin_right = 472.0
-margin_bottom = 144.0
+margin_right = 576.0
+margin_bottom = 248.0
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Consommables" type="ItemList" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
 allow_reselect = true
 max_text_lines = 4
 auto_height = true
@@ -26,6 +39,16 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Equipements" type="ItemList" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -268.0
+margin_bottom = -72.0
+items = [ "Beginner Ring", ExtResource( 4 ), false ]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 264.0
@@ -68,4 +91,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="item_selected" from="ItemList" to="ItemList" method="_on_ItemList_item_selected"]
+[connection signal="item_selected" from="TabContainer/Consommables" to="TabContainer/Consommables" method="_on_ItemList_item_selected"]

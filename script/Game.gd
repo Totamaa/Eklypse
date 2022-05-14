@@ -141,7 +141,7 @@ func _on_Game_tree_exited():
 func _on_MobTimer_timeout():
 		
 	# On choisit un endroit random sur le path du mob 
-	var mob_spawn_location = $Container/MobPath/MobSpawnhLocation
+	var mob_spawn_location = $MobPath/MobSpawnhLocation
 	mob_spawn_location.offset = randi()
 
 	if get_tree().get_nodes_in_group("enemy").size() < nbEnemyMax:

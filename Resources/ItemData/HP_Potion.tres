@@ -16,10 +16,12 @@ region = Rect2( 0, 0, 16, 16 )
 
 [resource]
 script = ExtResource( 1 )
+item_name = "HP Potion"
+description = "Heal for 10HP"
+item_type = 0
 damage_type = 0
 damage = -10
-item_name = "Heal Potion"
-description = "Cette potion permet de récupérer 10HP"
+effects = ""
 price = 0
 world_texture = SubResource( 2 )
 inventory_texture = SubResource( 1 )

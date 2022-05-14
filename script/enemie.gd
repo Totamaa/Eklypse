@@ -124,18 +124,19 @@ func hit(damage : int):
 	# si l'ennemi n'a plus de vie
 	if $ProgressBar.value <= 0:
 		emit_signal("die", xpKill)
-		random.randomize()
-		if random.randi_range(1,1) == 1:
-			var droped_item = _droped_item.instance()
-			droped_item.set_item_data(load("res://Resources/ItemData/HP_Potion.tres"))
-			get_parent().add_child(droped_item)
-			droped_item.add_to_group("collectables")
-			droped_item.global_position = get_parent().get_node("enemi").global_position
-			get_parent().get_node("Inventory").get_collectables()
+		_drop_item()
 		queue_free()
 		
 
-
+func _drop_item():
+	random.randomize()
+	if random.randi_range(1,1) == 1:
+		var droped_item = _droped_item.instance()
+		droped_item.set_item_data(load("res://Resources/ItemData/HP_Potion.tres"))
+		get_parent().add_child(droped_item)
+		droped_item.add_to_group("collectables")
+		droped_item.global_position = get_parent().get_node("enemi").global_position
+		
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	$VisibilityNotifier2D/Timer.start()
 
