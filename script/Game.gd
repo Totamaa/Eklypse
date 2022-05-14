@@ -9,7 +9,7 @@ enum {JOUR, NUIT}
 const SAVING_SCRIPT = preload("res://script/save.gd")
 
 export var spawn = 1 # Timer des monstres
-export var nbEnemyMax = 100000
+export var nbEnemyMax = 0
 export var duree_day = 1 # en minutes
 export var color_day = Color("#ffffff")
 export var color_night = Color("#9a7bc4")
@@ -25,6 +25,7 @@ export(PackedScene) var mob_scene
 
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
 func _ready():
+	randomize()
 	length_day = 60 * 60 * duree_day # 60 ticks par seconde et 60 secondes par minute
 	#tick = length_day / 2 # la moitié du jour: débute a midi
 	$Player/Light2D.hide()

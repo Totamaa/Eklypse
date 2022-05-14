@@ -74,6 +74,12 @@ func _on_hitbox_body_entered(body):
 			$GUI/VBoxContainer/HBox_HP/life.value -= get_parent().get_node("enemi").attack
 			
 		timeBeforeHealt = timeToBeHealth * 60
+		# bump 
+		var point_col = global_position - body.global_position
+		velocity.x = sign(point_col.x) * 5 * speed
+		velocity.y = sign(point_col.y) * 5 * speed
+		velocity = move_and_slide(velocity)
+		
 
 #fonction pour l'attque
 
@@ -139,8 +145,34 @@ func annimAttack():
 	: animation de l'attaque du joueur
 	"""
 	mouse_position = get_global_mouse_position()
-	var ligne_shoot = mouse_position - $Weapon/Position2D.global_position
-	print_debug(ligne_shoot)
+	var souris_placement = mouse_position - $Weapon/Position2D.global_position
+	print_debug(souris_placement)
+	# dans quelle carré
+	if souris_placement.x > 0 and souris_placement.y > 0:
+		print_debug("en bas a droite")
+		if souris_placement.x > souris_placement.y:
+			pass
+			$animPlayer.play("attack_right")
+		else:
+			$animPlayer.play("attack_down")
+	elif souris_placement.x > 0 and souris_placement.y <= 0:
+		print_debug("en haut a droite")
+		if souris_placement.x > -souris_placement.y:
+			$animPlayer.play("attack_right")
+		else:
+			$animPlayer.play("attack_up")
+	elif souris_placement.x <= 0 and souris_placement.y > 0:
+		print_debug("en bas a gauche")
+		if -souris_placement.x > souris_placement.y:
+			$animPlayer.play("attack_left")
+		else:
+			$animPlayer.play("attack_down")
+	elif souris_placement.x<= 0 and souris_placement.y <= 0:
+		print_debug("en haut a gauche")
+		if -souris_placement.x > -souris_placement.y:
+			$animPlayer.play("attack_left")
+		else:
+			$animPlayer.play("attack_up")
 	
 	
 	
