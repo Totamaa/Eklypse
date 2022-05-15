@@ -70,6 +70,7 @@ func _on_hitbox_body_entered(body):
 	if body.is_in_group("enemy"):
 		if $GUI/VBoxContainer/HBox_HP/life.value - get_parent().get_node("enemi").attack < 0:
 			$GUI/VBoxContainer/HBox_HP/life.value = 0
+			get_tree().change_scene("res://scene/Die.tscn")
 		else:
 			$GUI/VBoxContainer/HBox_HP/life.value -= get_parent().get_node("enemi").attack
 			
