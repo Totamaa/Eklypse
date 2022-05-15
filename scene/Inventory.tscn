@@ -46,8 +46,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
-margin_right = -268.0
-margin_bottom = -72.0
+margin_right = -4.0
+margin_bottom = -4.0
 items = [ "Beginner Ring", ExtResource( 4 ), false ]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -91,4 +91,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="tab_changed" from="TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="item_selected" from="TabContainer/Consommables" to="TabContainer/Consommables" method="_on_ItemList_item_selected"]

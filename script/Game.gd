@@ -34,6 +34,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("inventory"):
 		$Inventory.display_inventory()
+		$Inventory.get_inventory()
 
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
 func _physics_process(delta):
@@ -117,7 +118,7 @@ func _on_Game_tree_entered():
 		if keys == "player":
 			# Alors on récupère les données liées au joueur (ici uniquement la position)
 			for p_keys in data[keys]:
-				player.set(p_keys, str2var("Vector2" + data[keys][p_keys]))
+				player.set(p_keys, str2var("Vector2" + str(data[keys][p_keys])))
 		# Si les données appartiennent au monde (heurs, jours ...)
 		elif keys == "world":
 			# Alors on récupère les données liées au monde

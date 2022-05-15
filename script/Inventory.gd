@@ -19,8 +19,21 @@ func display_inventory():
 	$ColorRect.visible = false
 	is_visible = not is_visible
 	self.visible = is_visible
+	if self.visible == false:
+		get_node("ColorRect").visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func get_inventory():
+	var inv_conso = $TabContainer/Consommables.items
+	var inv_eqpmt = $TabContainer/Equipements.items
+	var inv = inv_conso + inv_eqpmt
+	return inv
+
+
+func _on_TabContainer_tab_changed(tab):
+	if get_node("ColorRect").visible == true:
+		get_node("ColorRect").visible = false

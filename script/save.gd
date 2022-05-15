@@ -1,7 +1,7 @@
 # Les données à sauvegarder au format JSON
 const data = {
 	"player":	{
-		"position": null,
+		"position": Vector2(0, 0),
 	},
 	"world":	{
 		"tick": 0,
@@ -50,5 +50,7 @@ static func load_data():
 		loaded_data = parse_json(file.get_line())
 		# On ferme le fichier
 		file.close()
+	else:
+		loaded_data = data
 		# Puis on retourne les données
-		return loaded_data
+	return loaded_data
