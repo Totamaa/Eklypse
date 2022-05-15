@@ -70,15 +70,16 @@ func _on_hitbox_body_entered(body):
 	if body.is_in_group("enemy"):
 		if $GUI/VBoxContainer/HBox_HP/life.value - get_parent().get_node("enemi").attack < 0:
 			$GUI/VBoxContainer/HBox_HP/life.value = 0
+			get_tree().change_scene("res://scene/Die.tscn")
 		else:
 			$GUI/VBoxContainer/HBox_HP/life.value -= get_parent().get_node("enemi").attack
 			
 		timeBeforeHealt = timeToBeHealth * 60
 		# bump 
-		var point_col = global_position - body.global_position
-		velocity.x = sign(point_col.x) * 5 * speed
-		velocity.y = sign(point_col.y) * 5 * speed
-		velocity = move_and_slide(velocity)
+#		var point_col = global_position - body.global_position
+#		velocity.x = sign(point_col.x) * 5 * speed
+#		velocity.y = sign(point_col.y) * 5 * speed
+#		velocity = move_and_slide(velocity)
 		
 
 #fonction pour l'attque

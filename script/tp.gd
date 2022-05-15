@@ -1,6 +1,5 @@
 extends Area2D
 
-
 func _ready():
 	$ProgressBar.max_value = $Timer.wait_time
 
