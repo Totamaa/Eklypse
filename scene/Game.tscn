@@ -40,6 +40,8 @@ scale = Vector2( 0.833333, 0.833333 )
 texture = ExtResource( 1 )
 energy = 0.5
 
+[node name="Inventory" parent="." instance=ExtResource( 9 )]
+
 [node name="enemi" parent="." instance=ExtResource( 3 )]
 position = Vector2( 72, 328 )
 
@@ -59,8 +61,6 @@ __meta__ = {
 [node name="MobSpawnhLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2( -64, -64 )
 rotation = 9.71019e-07
-
-[node name="Inventory" parent="." instance=ExtResource( 9 )]
 
 [node name="tp" parent="." instance=ExtResource( 11 )]
 position = Vector2( -896, 248 )

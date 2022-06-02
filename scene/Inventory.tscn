@@ -9,9 +9,6 @@
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TabContainer" type="TabContainer" parent="."]
 margin_left = 264.0
@@ -19,9 +16,6 @@ margin_top = 104.0
 margin_right = 576.0
 margin_bottom = 248.0
 tab_align = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Consommables" type="ItemList" parent="TabContainer"]
 anchor_right = 1.0
@@ -65,9 +59,6 @@ margin_right = 25.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 32, 32 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="item_name" type="Label" parent="ColorRect"]
 margin_left = 48.0
@@ -90,5 +81,46 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Stats" type="ColorRect" parent="."]
+anchor_top = -0.61
+anchor_bottom = -0.61
+margin_left = -128.0
+margin_top = 233.4
+margin_right = 126.0
+margin_bottom = 315.4
+color = Color( 0.0901961, 0.478431, 0.619608, 0.266667 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Stats"]
+margin_left = 3.0
+margin_top = -1.0
+margin_right = 254.0
+margin_bottom = 79.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Level" type="Label" parent="Stats/VBoxContainer"]
+margin_top = 6.0
+margin_right = 251.0
+margin_bottom = 20.0
+text = "zqdqsdzq"
+
+[node name="HP" type="Label" parent="Stats/VBoxContainer"]
+margin_top = 24.0
+margin_right = 251.0
+margin_bottom = 38.0
+text = "zqdqdzq"
+
+[node name="Force" type="Label" parent="Stats/VBoxContainer"]
+margin_top = 42.0
+margin_right = 251.0
+margin_bottom = 56.0
+text = "zqdqd"
+
+[node name="Vitesse" type="Label" parent="Stats/VBoxContainer"]
+margin_top = 60.0
+margin_right = 251.0
+margin_bottom = 74.0
+text = "dzqzdq"
 
 [connection signal="item_selected" from="TabContainer/Consommables" to="TabContainer/Consommables" method="_on_ItemList_item_selected"]

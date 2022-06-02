@@ -21,6 +21,8 @@ func display_inventory():
 	self.visible = is_visible
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _physics_process(delta):
+	$Stats/VBoxContainer/Level.set_text("Level : " + str(get_parent().get_node("Player").niveau))
+	$Stats/VBoxContainer/HP.set_text("HP : " + str(get_node("../Player/GUI/VBoxContainer/HBox_HP/life").value) + " / " + str(get_node("../Player/GUI/VBoxContainer/HBox_HP/life").max_value))
+	$Stats/VBoxContainer/Force.set_text("Force : " + str(get_parent().get_node("Player").degats))
+	$Stats/VBoxContainer/Vitesse.set_text("Speed : " + str(get_parent().get_node("Player").speed))
