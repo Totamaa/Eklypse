@@ -79,10 +79,10 @@ func _on_hitbox_body_entered(body):
 			
 		timeBeforeHealt = timeToBeHealth * 60
 		# bump 
-		var point_col = global_position - body.global_position
-		velocity.x = sign(point_col.x) * 5 * speed
-		velocity.y = sign(point_col.y) * 5 * speed
-		velocity = move_and_slide(velocity)
+#		var point_col = global_position - body.global_position
+#		velocity.x = sign(point_col.x) * 5 * speed
+#		velocity.y = sign(point_col.y) * 5 * speed
+#		velocity = move_and_slide(velocity)
 		
 
 #fonction pour l'attque

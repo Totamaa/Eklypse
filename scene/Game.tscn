@@ -54,6 +54,7 @@ wait_time = 12.0
 autostart = true
 
 [node name="MobPath" type="Path2D" parent="."]
+visible = false
 position = Vector2( -2, 0 )
 curve = SubResource( 1 )
 __meta__ = {

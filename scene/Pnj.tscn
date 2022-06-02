@@ -38,6 +38,7 @@ frame = 6
 region_rect = Rect2( 32, 32, 32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 939.738, 95.5349 )
 shape = SubResource( 1 )
 

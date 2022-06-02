@@ -42,7 +42,6 @@ func _physics_process(delta):
 	day_cycle()
 	$MobPath.global_position = Vector2.ZERO
 
-
 # fonction qui calcule la durée d'un cycle jour/nuit
 func day_cycle():
 	hours = int(tick / (length_day / 24))
