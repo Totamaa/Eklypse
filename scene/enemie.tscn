@@ -93,10 +93,12 @@ anims/walk_upLeft = SubResource( 9 )
 anims/walk_upRight = SubResource( 10 )
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 points = PoolVector2Array( 394.5, 71.2218, 328.283, 153.33 )
 default_color = Color( 0.952941, 0.101961, 0.0156863, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 3, -15 )
 shape = SubResource( 11 )
 one_way_collision_margin = 7.5

@@ -41,7 +41,7 @@ func _physics_process(delta):
 	tick += 1 # avance du temps
 	day_cycle()
 	$MobPath.global_position = Vector2.ZERO
-
+	$Label.set_text(str(Engine.get_frames_per_second()))
 
 # fonction qui calcule la durée d'un cycle jour/nuit
 func day_cycle():

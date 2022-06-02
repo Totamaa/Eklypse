@@ -41,8 +41,10 @@ texture = ExtResource( 1 )
 energy = 0.5
 
 [node name="Inventory" parent="." instance=ExtResource( 9 )]
+visible = false
 
 [node name="enemi" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 72, 328 )
 
 [node name="Pnj" parent="." instance=ExtResource( 5 )]
@@ -52,6 +54,7 @@ wait_time = 12.0
 autostart = true
 
 [node name="MobPath" type="Path2D" parent="."]
+visible = false
 position = Vector2( -2, 0 )
 curve = SubResource( 1 )
 __meta__ = {
@@ -63,6 +66,7 @@ position = Vector2( -64, -64 )
 rotation = 9.71019e-07
 
 [node name="tp" parent="." instance=ExtResource( 11 )]
+visible = false
 position = Vector2( -896, 248 )
 
 [connection signal="tree_entered" from="." to="." method="_on_Game_tree_entered"]
