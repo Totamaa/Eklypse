@@ -34,7 +34,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("inventory"):
 		$Inventory.display_inventory()
-		$Inventory.get_inventory()
+		print($Inventory.get_inventory())
 
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
 func _physics_process(delta):
@@ -136,7 +136,7 @@ func _on_Game_tree_exited():
 		"nb_day": nb_day
 		}
 	# On appelle la fonction qui permet de sauvegarder les données
-	SAVING_SCRIPT.save_on_quit(world_data, get_node("Player").get_property())
+	SAVING_SCRIPT.save_on_quit(world_data, get_node("Player").get_property(), get_node("Inventory").get_inventory())
 
 
 

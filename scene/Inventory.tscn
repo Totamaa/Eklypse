@@ -49,6 +49,7 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 items = [ "Beginner Ring", ExtResource( 4 ), false ]
+script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 264.0

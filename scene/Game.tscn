@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/SeekPng.com_light-shine-png_172580.png" type="Texture" id=1]
 [ext_resource path="res://script/Game.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://scene/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scene/Pnj.tscn" type="PackedScene" id=5]
 [ext_resource path="res://tiles/.tres" type="TileSet" id=6]
+[ext_resource path="res://Resources/ItemData/MP_Potion.tres" type="Resource" id=7]
+[ext_resource path="res://scene/Item.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scene/Inventory.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scene/tp.tscn" type="PackedScene" id=11]
 
@@ -64,6 +66,9 @@ rotation = 9.71019e-07
 
 [node name="tp" parent="." instance=ExtResource( 11 )]
 position = Vector2( -896, 248 )
+
+[node name="Item" parent="." instance=ExtResource( 8 )]
+item_data = ExtResource( 7 )
 
 [connection signal="tree_entered" from="." to="." method="_on_Game_tree_entered"]
 [connection signal="tree_exited" from="." to="." method="_on_Game_tree_exited"]

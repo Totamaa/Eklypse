@@ -16,8 +16,8 @@ region = Rect2( 16, 0, 16, 16 )
 
 [resource]
 script = ExtResource( 1 )
-item_name = ""
-description = ""
+item_name = "Potion de mana"
+description = "wdfsqdfsdf"
 item_type = 0
 damage_type = 1
 damage = -10

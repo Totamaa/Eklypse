@@ -7,6 +7,9 @@ var ItemListContent = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_push_Items()
+	
+func get_item_content():
+	return ItemListContent
 
 func _push_Items():
 	self.clear()

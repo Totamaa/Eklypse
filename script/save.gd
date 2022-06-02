@@ -8,13 +8,17 @@ const data = {
 		"hours": 0,
 		"nb_day": 0,
 	},
+	"inventory":	{
+		"consommables": [],
+		"equipements": [],
+	}
 }
 
 # Chemin du fichier de sauvegarde (dans le répertoire du jeu pour le rendre plus accessible mais à changer à la fin)
 const save_path = "res://save.json"
 
 # Fonction qui permet de sauvegarder lorsque le joueur quitte le jeu
-static func save_on_quit(world_data, player_data):
+static func save_on_quit(world_data, player_data, inventory_data):
 	# Création d'un objet "File"
 	var file = File.new()
 	# On affecte file à un fichier en mode écriture
@@ -31,6 +35,11 @@ static func save_on_quit(world_data, player_data):
 			# On les stocks dans la variable "data"
 			if p_keys in data["player"]:
 				data["player"][p_keys] = player_data[p_keys]
+		# On parcours les données concernant l'inventaire
+		for i_keys in inventory_data:
+			# On les stocks dans la variables "data"
+			if i_keys in data["inventory"]:
+				data["inventory"][i_keys] = inventory_data[i_keys]
 		# On écrit la variable "data" en JSON dans le fichier
 		file.store_line(to_json(data))
 		# On ferme le fichier

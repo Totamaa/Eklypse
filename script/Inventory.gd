@@ -28,9 +28,9 @@ func display_inventory():
 #	pass
 
 func get_inventory():
-	var inv_conso = $TabContainer/Consommables.items
-	var inv_eqpmt = $TabContainer/Equipements.items
-	var inv = inv_conso + inv_eqpmt
+	var inv = {"consommables": null, "equipements": null}
+	inv["consommables"] = $TabContainer/Consommables.get_item_content()
+	inv["equipements"] = $TabContainer/Equipements.get_item_content()
 	return inv
 
 

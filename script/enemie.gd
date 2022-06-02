@@ -123,7 +123,7 @@ func hit(damage : int):
 	
 	# si l'ennemi n'a plus de vie
 	if $ProgressBar.value <= 0:
-		emit_signal("die", xpKill)
+		emit_signal("die", xpKill, self)
 		_drop_item()
 		queue_free()
 		
