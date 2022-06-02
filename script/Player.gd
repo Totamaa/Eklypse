@@ -1,9 +1,7 @@
 extends KinematicBody2D
 
-export var speed = 200
 export var timeToBeHealth = 3 # temps avant que le joueur se heal en secondes
 export var niveau = 1
-export var degats = 20
 
 
 var velocity = Vector2()
@@ -12,9 +10,13 @@ var timeBeforeHealt = timeToBeHealth * 60
 
 onready var last_healt = $GUI/VBoxContainer/HBox_HP/life.value
 onready var weapon = $Weapon
+export onready var speed = 300 + (niveau - 1)
+export onready var degats = 20 + (niveau - 1)
 
 func _ready():
 	add_to_group("player")
+	$GUI/VBoxContainer/HBox_HP/life.max_value = 100 + 20 * (niveau - 1)
+	$GUI/VBoxContainer/HBox_HP/life.value = $GUI/VBoxContainer/HBox_HP/life.max_value
 
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
 func _physics_process(_delta):
@@ -68,11 +70,12 @@ func _on_hitbox_body_entered(body):
 		
 	# collision avec un mob
 	if body.is_in_group("enemy"):
-		if $GUI/VBoxContainer/HBox_HP/life.value - get_parent().get_node("enemi").attack < 0:
-			$GUI/VBoxContainer/HBox_HP/life.value = 0
-			get_tree().change_scene("res://scene/Die.tscn")
-		else:
-			$GUI/VBoxContainer/HBox_HP/life.value -= get_parent().get_node("enemi").attack
+		if get_node("../enemi").is_inside_tree():
+			if $GUI/VBoxContainer/HBox_HP/life.value - get_parent().get_node("enemi").attack < 0:
+				$GUI/VBoxContainer/HBox_HP/life.value = 0
+				get_tree().change_scene("res://scene/Die.tscn")
+			else:
+				$GUI/VBoxContainer/HBox_HP/life.value -= get_parent().get_node("enemi").attack
 			
 		timeBeforeHealt = timeToBeHealth * 60
 		# bump 
@@ -146,8 +149,7 @@ func annimAttack():
 	: animation de l'attaque du joueur
 	"""
 	mouse_position = get_global_mouse_position()
-	var souris_placement = mouse_position - $Weapon/Position2D.global_position
-	print_debug(souris_placement)
+	var souris_placement = mouse_position - self.global_position
 	# dans quelle carré
 	if souris_placement.x > 0 and souris_placement.y > 0:
 		print_debug("en bas a droite")
