@@ -1,0 +1,179 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://script/DialoguePNJ.gd" type="Script" id=1]
+
+[node name="DialoguePNJ" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -229.0
+margin_top = -180.0
+margin_right = 229.0
+margin_bottom = -70.0
+color = Color( 0.388235, 0, 0.0470588, 0.709804 )
+
+[node name="Tuto" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -229.0
+margin_top = -169.0
+margin_right = 229.0
+
+[node name="Label" type="Label" parent="Tuto"]
+margin_right = 458.0
+margin_bottom = 31.0
+text = "Chef du village
+--"
+
+[node name="CenterContainer" type="CenterContainer" parent="Tuto"]
+margin_top = 35.0
+margin_right = 458.0
+margin_bottom = 66.0
+
+[node name="Label" type="Label" parent="Tuto/CenterContainer"]
+margin_left = 142.0
+margin_right = 316.0
+margin_bottom = 31.0
+text = "Blabalbla tuer un monstre !
+"
+
+[node name="CenterContainer2" type="CenterContainer" parent="Tuto"]
+margin_top = 70.0
+margin_right = 458.0
+margin_bottom = 90.0
+
+[node name="ButtonTuto" type="Button" parent="Tuto/CenterContainer2"]
+margin_left = 159.0
+margin_right = 298.0
+margin_bottom = 20.0
+text = "Accepter la mission"
+
+[node name="Mission" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -229.0
+margin_top = -169.0
+margin_right = 229.0
+
+[node name="Label" type="Label" parent="Mission"]
+margin_right = 458.0
+margin_bottom = 31.0
+text = "Chef du village
+--"
+
+[node name="CenterContainer" type="CenterContainer" parent="Mission"]
+margin_top = 35.0
+margin_right = 458.0
+margin_bottom = 66.0
+
+[node name="Label" type="Label" parent="Mission/CenterContainer"]
+margin_left = 153.0
+margin_right = 304.0
+margin_bottom = 31.0
+text = "Blabalbla passer level 5
+"
+
+[node name="CenterContainer2" type="CenterContainer" parent="Mission"]
+margin_top = 70.0
+margin_right = 458.0
+margin_bottom = 90.0
+
+[node name="ButtonMission" type="Button" parent="Mission/CenterContainer2"]
+margin_left = 159.0
+margin_right = 298.0
+margin_bottom = 20.0
+text = "Accepter la mission"
+
+[node name="Wait" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -229.0
+margin_top = -169.0
+margin_right = 229.0
+
+[node name="Label" type="Label" parent="Wait"]
+margin_right = 458.0
+margin_bottom = 31.0
+text = "Chef du village
+--"
+
+[node name="CenterContainer" type="CenterContainer" parent="Wait"]
+margin_top = 35.0
+margin_right = 458.0
+margin_bottom = 66.0
+
+[node name="Label" type="Label" parent="Wait/CenterContainer"]
+margin_left = 91.0
+margin_right = 367.0
+margin_bottom = 31.0
+text = "Reviens me voir après avoir finit la mission
+"
+
+[node name="CenterContainer2" type="CenterContainer" parent="Wait"]
+margin_top = 70.0
+margin_right = 458.0
+margin_bottom = 90.0
+
+[node name="ButtonWait" type="Button" parent="Wait/CenterContainer2"]
+margin_left = 147.0
+margin_right = 311.0
+margin_bottom = 20.0
+text = "Repartir faire la mission"
+
+[node name="Boss" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -229.0
+margin_top = -169.0
+margin_right = 229.0
+
+[node name="Label" type="Label" parent="Boss"]
+margin_right = 458.0
+margin_bottom = 31.0
+text = "Chef du village
+--"
+
+[node name="CenterContainer" type="CenterContainer" parent="Boss"]
+margin_top = 35.0
+margin_right = 458.0
+margin_bottom = 66.0
+
+[node name="Label" type="Label" parent="Boss/CenterContainer"]
+margin_left = 73.0
+margin_right = 384.0
+margin_bottom = 31.0
+text = "Blabalbla sauve nous et tue le le boss stp le reuf
+"
+
+[node name="CenterContainer2" type="CenterContainer" parent="Boss"]
+margin_top = 70.0
+margin_right = 458.0
+margin_bottom = 90.0
+
+[node name="ButtonBoss" type="Button" parent="Boss/CenterContainer2"]
+margin_left = 159.0
+margin_right = 298.0
+margin_bottom = 20.0
+text = "Accepter la mission"
+
+[connection signal="pressed" from="Tuto/CenterContainer2/ButtonTuto" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Tuto/CenterContainer2/ButtonTuto" to="." method="_on_ButtonTuto_pressed"]
+[connection signal="pressed" from="Mission/CenterContainer2/ButtonMission" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Mission/CenterContainer2/ButtonMission" to="." method="_on_ButtonMission_pressed"]
+[connection signal="pressed" from="Wait/CenterContainer2/ButtonWait" to="." method="_on_ButtonWait_pressed"]
+[connection signal="pressed" from="Boss/CenterContainer2/ButtonBoss" to="." method="_on_ButtonBoss_pressed"]

@@ -6,8 +6,7 @@ signal level_up
 
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
 func _ready():
-	$Panel.hide()
-#	$VBoxContainer/HBox_HP/life.size.x = 100
+	pass
 	
 
 func _on_Button_pressed():

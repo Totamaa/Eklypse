@@ -53,37 +53,5 @@ margin_bottom = 50.0
 text = "Level: 1"
 valign = 1
 
-[node name="Panel" type="Panel" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -337.056
-margin_top = -136.0
-margin_right = 338.944
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
-margin_left = 176.0
-margin_top = 57.0
-margin_right = 674.0
-margin_bottom = 96.0
-text = "Bonjour, tu es bien le héros de ce village?"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Button" type="Button" parent="Panel"]
-margin_left = 251.071
-margin_top = 82.1171
-margin_right = 351.071
-margin_bottom = 127.117
-text = "oui..."
-
 [connection signal="yes" from="." to="." method="_on_GUI_yes"]
 [connection signal="value_changed" from="VBoxContainer/HBox_XP/xp" to="." method="_on_xp_value_changed"]
-[connection signal="pressed" from="Panel/Button" to="." method="_on_Button_pressed"]

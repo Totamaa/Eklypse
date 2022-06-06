@@ -10,8 +10,8 @@ var timeBeforeHealt = timeToBeHealth * 60
 
 onready var last_healt = $GUI/VBoxContainer/HBox_HP/life.value
 onready var weapon = $Weapon
-export onready var speed = 300 + (niveau - 1)
-export onready var degats = 20 + (niveau - 1)
+onready var speed = 300 + (niveau - 1)
+onready var degats = 20 + (niveau - 1)
 
 func _ready():
 	add_to_group("player")
@@ -64,9 +64,6 @@ func _on_hitbox_body_entered(body):
 	"""
 	:entrée body: corp avec lequel l'objet colisionne
 	"""
-	# collision avec un pnj
-	if body.is_in_group("pnj"):
-		$GUI/Panel.show()
 		
 	# collision avec un mob
 	if body.is_in_group("enemy"):
@@ -129,10 +126,10 @@ func _on_GUI_level_up():
 	"""
 	niveau += 1
 	$GUI/VBoxContainer/HBox_XP/xp.value = 0
-	$GUI/VBoxContainer/HBox_XP/xp.max_value += 50
-	speed += 1
-	degats += 1
-	$GUI/VBoxContainer/HBox_HP/life.max_value += 20
+	$GUI/VBoxContainer/HBox_XP/xp.max_value = 100 + 50 * (niveau - 1)
+	speed = 300 + (niveau - 1)
+	degats = 20 + (niveau - 1)
+	$GUI/VBoxContainer/HBox_HP/life.max_value = 100 + 20 * (niveau - 1)
 	$GUI/VBoxContainer/HBox_HP/life.value = $GUI/VBoxContainer/HBox_HP/life.max_value
 	$GUI/VBoxContainer/niveau.set_text("Level: " + str(niveau))
 

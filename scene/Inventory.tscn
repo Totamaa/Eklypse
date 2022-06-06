@@ -83,8 +83,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="tab_changed" from="TabContainer" to="." method="_on_TabContainer_tab_changed"]
-
 [node name="Stats" type="ColorRect" parent="."]
 anchor_top = -0.61
 anchor_bottom = -0.61
@@ -126,4 +124,5 @@ margin_right = 251.0
 margin_bottom = 74.0
 text = "dzqzdq"
 
+[connection signal="tab_changed" from="TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="item_selected" from="TabContainer/Consommables" to="TabContainer/Consommables" method="_on_ItemList_item_selected"]
