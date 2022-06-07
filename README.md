@@ -31,6 +31,7 @@ _A venir_
 * Co-créateur du projet:
     * **[Matteo Calderaro](https://github.com/Totamaa)**
     * **[Raphael Guingois](https://github.com/Rphlgngs)**
+*AFK:
     * **[Noémie Thourault](https://github.com/Noemiethrlt)**
     * **[Antoine Lamarsalle](https://github.com/ElMalin18)**
     * **Thibaut Najar**
