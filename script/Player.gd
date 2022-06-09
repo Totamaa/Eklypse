@@ -1,9 +1,14 @@
 extends KinematicBody2D
 
-export var timeToBeHealth = 3 # temps avant que le joueur se heal en secondes
+class_name Player
+
+
+export var timeToBeHealth = 5 # temps avant que le joueur se heal en secondes
 export var niveau = 1
 
-
+var counter = 0			# Compteur pour la vitesse de récupération de la vie
+var recoveringSpeed = 1	# Temps entre chaque hpRecovered
+var hpRecovered = 1		# Nombre de HP récupéré en recoveringSpeed seconde(s)
 var velocity = Vector2()
 var mouse_position = Vector2()
 var timeBeforeHealt = timeToBeHealth * 60
@@ -22,6 +27,7 @@ func _ready():
 func _physics_process(_delta):
 	# gère les entrées claviées
 	get_input()
+	counter += _delta
 
 	# déplacement du joueur
 	velocity = move_and_slide(velocity)
@@ -31,8 +37,9 @@ func _physics_process(_delta):
 	# vie du perso
 	if $GUI/VBoxContainer/HBox_HP/life.value == last_healt and $GUI/VBoxContainer/HBox_HP/life.value < $GUI/VBoxContainer/HBox_HP/life.max_value:
 		timeBeforeHealt -= 1
-		if timeBeforeHealt <= 0:
-			$GUI/VBoxContainer/HBox_HP/life.value += 0.5
+		if timeBeforeHealt <= 0 and counter >= recoveringSpeed:
+			$GUI/VBoxContainer/HBox_HP/life.value += hpRecovered
+			counter = 0
 	last_healt = $GUI/VBoxContainer/HBox_HP/life.value
 
 
@@ -67,7 +74,7 @@ func _on_hitbox_body_entered(body):
 		
 	# collision avec un mob
 	if body.is_in_group("enemy"):
-		if get_node("../enemi").is_inside_tree():
+		if get_parent().get_node("enemi") != null:
 			if $GUI/VBoxContainer/HBox_HP/life.value - get_parent().get_node("enemi").attack < 0:
 				$GUI/VBoxContainer/HBox_HP/life.value = 0
 				get_tree().change_scene("res://scene/Die.tscn")
@@ -85,8 +92,6 @@ func _on_hitbox_body_entered(body):
 #fonction pour l'attque
 
 func _unhandled_input(event: InputEvent) -> void:
-	for e in get_tree().get_nodes_in_group("enemy"):
-		e.connect("die", self, "_add_xp")
 	if event.is_action_pressed("f_attack"):
 		weapon.attack()
 		annimAttack()
@@ -134,7 +139,7 @@ func _on_GUI_level_up():
 	$GUI/VBoxContainer/niveau.set_text("Level: " + str(niveau))
 
 
-func _add_xp(xpKill, mob):
+func add_xp(xpKill):
 	"""
 	: ajout de l'xp au joueur quand il tue un ennemi
 	"""

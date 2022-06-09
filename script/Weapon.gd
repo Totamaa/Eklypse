@@ -14,4 +14,4 @@ func attack():
 
 func _on_Weapon_body_entered(body):
 	if body.has_method("hit"):
-		body.hit(damage + get_parent().degats)
+		body.hit(get_parent(), damage + get_parent().degats)

@@ -9,6 +9,9 @@
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TabContainer" type="TabContainer" parent="."]
 margin_left = 264.0
@@ -16,6 +19,9 @@ margin_top = 104.0
 margin_right = 576.0
 margin_bottom = 248.0
 tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Consommables" type="ItemList" parent="TabContainer"]
 anchor_right = 1.0
@@ -125,4 +131,5 @@ margin_bottom = 74.0
 text = "dzqzdq"
 
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_TabContainer_tab_changed"]
+[connection signal="item_activated" from="TabContainer/Consommables" to="." method="_on_Consommables_item_activated"]
 [connection signal="item_selected" from="TabContainer/Consommables" to="TabContainer/Consommables" method="_on_ItemList_item_selected"]

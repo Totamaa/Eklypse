@@ -43,3 +43,9 @@ func _physics_process(delta):
 	$Stats/VBoxContainer/HP.set_text("HP : " + str(get_node("../Player/GUI/VBoxContainer/HBox_HP/life").value) + " / " + str(get_node("../Player/GUI/VBoxContainer/HBox_HP/life").max_value))
 	$Stats/VBoxContainer/Force.set_text("Force : " + str(get_parent().get_node("Player").degats))
 	$Stats/VBoxContainer/Vitesse.set_text("Speed : " + str(get_parent().get_node("Player").speed))
+
+
+func _on_Consommables_item_activated(index):
+	var current_tab = get_node("TabContainer").get_current_tab_control()
+	if current_tab.name == "Consommables":
+		pass

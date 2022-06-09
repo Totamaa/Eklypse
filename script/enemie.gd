@@ -117,13 +117,13 @@ func animation(vel):
 
 	
 #fonction des degats du mob
-func hit(damage : int):
+func hit(attacker: Player, damage : int):
 	$ProgressBar.value -= damage 
 	timeBeforeHealt = timeToBeHealth * 60
 	
 	# si l'ennemi n'a plus de vie
 	if $ProgressBar.value <= 0:
-		emit_signal("die", xpKill, self)
+		attacker.add_xp(xpKill)
 		_drop_item()
 		queue_free()
 		
