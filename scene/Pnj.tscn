@@ -24,7 +24,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 31.0
+radius = 25.0
+height = 14.0
 
 [node name="Pnj" type="KinematicBody2D"]
 pause_mode = 2
