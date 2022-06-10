@@ -1,22 +1,41 @@
 extends KinematicBody2D
 
 class_name Player
+"""
+Variables concernant les caractéristiques
+"""
+var level 			= 1							# Niveau du joueur
+var experience 		= 0							# Expérience du joueur
+var maxHealth 		= 100 + 20 * (level - 1)	# Points de vie maximaux du joueur au level L
+var currentHealth 	= maxHealth					# Points de vie actuels du joueur
+var strength 		= 1 * level					# Force du joueur
+var damage			= 20 + strength				# Dégats infligés par le joueur
+var speed 			= 300 + (level - 1)		# Vitesse de déplacement du joueur
+
+"""
+Variables concernant la mécanique du joueur
+"""
+# Expérience requise par niveau [1,2,3...]. XPreq = xp précédent + (xp précédent * 0.25)
+var exp_table 		=	[100, 125, 156, 195, 244, 305, 381, 476, 595, 744, 930, 1163, 1454, 1818, 2273, 2841, 3551, 4439, 5549, 6936]
+var timeToBeHealth 	= 5 # Nombre de seconde(s) avant la récupération de la vie
+var hpRecovered 	= 1	# Nombre de point(s) de vie récupéré(s) par recoveringSpeed seconde(s)
+var recoveringSpeed = 1	# Nombre de seconde(s) entre chaque hpRecovered point(s) de vie récupéré(s)
 
 signal level5
 
-export var timeToBeHealth = 5 # temps avant que le joueur se heal en secondes
+
 export var niveau = 1
 
 var counter = 0			# Compteur pour la vitesse de récupération de la vie
-var recoveringSpeed = 1	# Temps entre chaque hpRecovered
-var hpRecovered = 1		# Nombre de HP récupéré en recoveringSpeed seconde(s)
+
+
 var velocity = Vector2()
 var mouse_position = Vector2()
-var timeBeforeHealt = timeToBeHealth * 60
+var timeBeforeHeal = timeToBeHealth * 60
 
 onready var last_healt = $GUI/VBoxContainer/HBox_HP/life.value
 onready var weapon = $Weapon
-onready var speed = 300 + (niveau - 1)
+
 onready var degats = 20 + (niveau - 1)
 
 func _ready():
@@ -26,23 +45,42 @@ func _ready():
 
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
 func _physics_process(_delta):
+	"""
+	Pour information : la variable _delta vaut 0.0167 et correspond au temps d'affichage d'une image.
+	On a donc 60 fps (1 / 0.0167)
+	"""
 	# gère les entrées claviées
 	get_input()
-	counter += _delta
-
 	# déplacement du joueur
 	velocity = move_and_slide(velocity)
 
 	$Weapon.look_at(mouse_position)
 	
-	# vie du perso
-	if $GUI/VBoxContainer/HBox_HP/life.value == last_healt and $GUI/VBoxContainer/HBox_HP/life.value < $GUI/VBoxContainer/HBox_HP/life.max_value:
-		timeBeforeHealt -= 1
-		if timeBeforeHealt <= 0 and counter >= recoveringSpeed:
-			$GUI/VBoxContainer/HBox_HP/life.value += hpRecovered
-			counter = 0
-	last_healt = $GUI/VBoxContainer/HBox_HP/life.value
+	# Récupération automatique de la vie
+	"""
+	Si la vie du joueur est inférieur au maximum de points de vie qu'il peut avoir alors la récupération automatique peut débuter
+	"""
+	if currentHealth < maxHealth:
+		# Si le temps d'attente pour être automatiquement soigné est dépassé, on soigne
+		if timeBeforeHeal <= 0:
+			counter += _delta	# On incrémente la variable counter avec _delta (donc elle vaudra 1 dans une seconde)
+			# Si la variable counter est supérieure ou égale à recoveringSpeed alors on ajoute hpRecovered PDV
+			if counter >= recoveringSpeed:
+				currentHealth += hpRecovered
+				update_display()
+				counter = 0
+		else:
+			timeBeforeHeal -= 1
 
+"""
+Fonction qui update l'affichage de la barre de vie
+"""
+func update_display():
+	$GUI/VBoxContainer/HBox_HP/life.value = currentHealth
+	$GUI/VBoxContainer/HBox_XP/xp.value = experience
+	$GUI/VBoxContainer/HBox_HP/life.max_value = maxHealth
+	$GUI/VBoxContainer/HBox_XP/xp.max_value = exp_table[level-1]
+	$GUI/VBoxContainer/HBox_XP/xp.value = experience
 
 # fonction qui gère les entrées claviées
 func get_input():
@@ -67,22 +105,25 @@ func get_input():
 	velocity = velocity.normalized() * speed # normaliezd = vectreur de longueur 1
 	
 
-# collision
+"""
+Fonction qui détecte quand un corps entre en contact avec le joueur
+"""
 func _on_hitbox_body_entered(body):
 	"""
-	:entrée body: corp avec lequel l'objet colisionne
+	:entrée body: Corps qui entre en contact avec le joueur
 	"""
 		
-	# collision avec un mob
+	# Si le corps qui entre en contact est un ennemi
 	if body.is_in_group("enemy"):
-		if get_parent().get_node("enemi") != null:
-			if $GUI/VBoxContainer/HBox_HP/life.value - get_parent().get_node("enemi").attack < 0:
-				$GUI/VBoxContainer/HBox_HP/life.value = 0
+		if body != null:
+			if currentHealth - body.attack < 0:
+				currentHealth = 0
 				get_tree().change_scene("res://scene/Die.tscn")
 			else:
-				$GUI/VBoxContainer/HBox_HP/life.value -= get_parent().get_node("enemi").attack
+				currentHealth -= body.attack
+			update_display()
 			
-		timeBeforeHealt = timeToBeHealth * 60
+		timeBeforeHeal = timeToBeHealth * 60
 		# bump 
 #		var point_col = global_position - body.global_position
 #		velocity.x = sign(point_col.x) * 5 * speed
@@ -130,11 +171,7 @@ func _on_GUI_level_up():
 	"""
 	: Augmente les stats du joueurs quand il level up
 	"""
-	niveau += 1
-	$GUI/VBoxContainer/HBox_XP/xp.value = 0
-	$GUI/VBoxContainer/HBox_XP/xp.max_value = 100 + 50 * (niveau - 1)
 	speed = 300 + (niveau - 1)
-	degats = 20 + (niveau - 1)
 	$GUI/VBoxContainer/HBox_HP/life.max_value = 100 + 20 * (niveau - 1)
 	$GUI/VBoxContainer/HBox_HP/life.value = $GUI/VBoxContainer/HBox_HP/life.max_value
 	$GUI/VBoxContainer/niveau.set_text("Level: " + str(niveau))
@@ -142,12 +179,25 @@ func _on_GUI_level_up():
 		emit_signal("level5")
 
 
-func add_xp(xpKill):
-	"""
-	: ajout de l'xp au joueur quand il tue un ennemi
-	"""
-	$GUI/VBoxContainer/HBox_XP/xp.value += xpKill
+"""
+Fonction qui ajoute l'expérience au joueur
+"""
+func add_xp(xp):
+	experience += xp
+	if experience > exp_table[level]:
+		experience = experience - exp_table[level]
+		level_up()
+	elif experience == exp_table[level]:
+		experience = 0
+		level_up()
+	update_display()
 	
+	
+"""
+Fonction de level up
+"""
+func level_up():
+	level += 1
 
 func annimAttack():
 	"""
