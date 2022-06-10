@@ -55,6 +55,9 @@ func _physics_process(delta):
 	var path:PoolVector2Array = Nav.get_simple_path(self.global_position, Joueur.global_position, true)
 
 	$Line2D.points = path
+	
+	if $ProgressBar.value <= 0:
+		emit_signal("die")
 
 	# calcule la distance entre le joueur et le mob et se déplace
 	if path.size() > 1:

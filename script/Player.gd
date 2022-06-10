@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 class_name Player
 
+signal level5
 
 export var timeToBeHealth = 5 # temps avant que le joueur se heal en secondes
 export var niveau = 1
@@ -137,6 +138,8 @@ func _on_GUI_level_up():
 	$GUI/VBoxContainer/HBox_HP/life.max_value = 100 + 20 * (niveau - 1)
 	$GUI/VBoxContainer/HBox_HP/life.value = $GUI/VBoxContainer/HBox_HP/life.max_value
 	$GUI/VBoxContainer/niveau.set_text("Level: " + str(niveau))
+	if niveau == 2:
+		emit_signal("level5")
 
 
 func add_xp(xpKill):

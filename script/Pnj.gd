@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var quete = 0 
+var quete = 0
 # 0: rien, 1: tuto, 2: tuer 10 monstres, 3: tuer le boss
 
 var tutoDone = false
@@ -16,6 +16,7 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("player"):
 		$DialoguePNJ/ColorRect.show()
+		get_parent().get_node("Player/animPlayer").play("idle")
 		get_tree().paused = true
 		# première rencontre avec le pnj
 		if quete == 0:
@@ -28,6 +29,7 @@ func _on_Area2D_body_entered(body):
 			if tutoDone:
 				quete += 1
 				$DialoguePNJ/Mission.show()
+				$CenterContainer/Label.set_text("...")
 			else:
 				$CenterContainer/Label.set_text("...")
 				$DialoguePNJ/Wait.show()
@@ -45,6 +47,7 @@ func _on_Area2D_body_entered(body):
 		# tuer le boss
 		elif quete == 3:
 			$CenterContainer/Label.set_text("...")
+			$DialoguePNJ/Wait.show()
 
 
 func _on_DialoguePNJ_buttonPressed():
@@ -54,3 +57,13 @@ func _on_DialoguePNJ_buttonPressed():
 	$DialoguePNJ/Mission.hide()
 	$DialoguePNJ/Wait.hide()
 	$DialoguePNJ/Tuto.hide()
+
+
+func _on_enemi_die():
+	tutoDone = true
+	$CenterContainer/Label.set_text("!!!")
+
+
+func _on_Player_level5():
+	missionDone = true
+	$CenterContainer/Label.set_text("!!!")

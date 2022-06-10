@@ -173,9 +173,9 @@ margin_right = 298.0
 margin_bottom = 20.0
 text = "Accepter la mission"
 
-[connection signal="pressed" from="Tuto/CenterContainer2/ButtonTuto" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Tuto/CenterContainer2/ButtonTuto" to="." method="_on_ButtonTuto_pressed"]
-[connection signal="pressed" from="Mission/CenterContainer2/ButtonMission" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Tuto/CenterContainer2/ButtonTuto" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Mission/CenterContainer2/ButtonMission" to="." method="_on_ButtonMission_pressed"]
+[connection signal="pressed" from="Mission/CenterContainer2/ButtonMission" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Wait/CenterContainer2/ButtonWait" to="." method="_on_ButtonWait_pressed"]
 [connection signal="pressed" from="Boss/CenterContainer2/ButtonBoss" to="." method="_on_ButtonBoss_pressed"]
