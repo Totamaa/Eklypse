@@ -1,0 +1,17 @@
+extends Node2D
+
+var xpKill = 100
+
+
+func _ready():
+	$Player/Camera2D.current = false
+
+
+#fonction des degats du mob
+func hit(attacker: Player, damage : int):
+	$ProgressBar.value -= damage
+	
+	# si l'ennemi n'a plus de vie
+	if $ProgressBar.value <= 0:
+		attacker.add_xp(xpKill)
+		queue_free()
