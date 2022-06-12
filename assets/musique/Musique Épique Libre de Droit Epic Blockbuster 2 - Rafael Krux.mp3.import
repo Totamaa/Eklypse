@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Musique Épique Libre de Droit Epic Blockbuster 2 - Rafael Krux.mp3-5b784b843be09324040ec9fd9fd86c39.mp3str"
+
+[deps]
+
+source_file="res://assets/musique/Musique Épique Libre de Droit Epic Blockbuster 2 - Rafael Krux.mp3"
+dest_files=[ "res://.import/Musique Épique Libre de Droit Epic Blockbuster 2 - Rafael Krux.mp3-5b784b843be09324040ec9fd9fd86c39.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

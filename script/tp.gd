@@ -18,4 +18,6 @@ func _on_tp_area_exited(area):
 
 
 func _on_Timer_timeout():
+	
+	Global.player = get_parent().get_node("Player")
 	get_tree().change_scene("res://scene/Donjon.tscn")

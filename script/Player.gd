@@ -41,8 +41,6 @@ var timeBeforeHeal = timeToBeHealth * 60
 onready var last_healt = $GUI/VBoxContainer/HBox_HP/life.value
 onready var weapon = $Weapon
 
-onready var degats = 20 + (niveau - 1)
-
 func _ready():
 	add_to_group("player")
 	$GUI/VBoxContainer/HBox_HP/life.max_value = 100 + 20 * (niveau - 1)
