@@ -44,8 +44,9 @@ func _physics_process(delta):
 	$Stats/VBoxContainer/Force.set_text("Force : " + str(get_parent().get_node("Player").damage))
 	$Stats/VBoxContainer/Vitesse.set_text("Speed : " + str(get_parent().get_node("Player").speed))
 
-
 func _on_Consommables_item_activated(index):
 	var current_tab = get_node("TabContainer").get_current_tab_control()
-	if current_tab.name == "Consommables":
-		pass
+	var object = $TabContainer/Consommables.get_item_content_list()[index]
+	if object.effect_type == 0:
+		get_parent().get_node("Player").add_health(object.recover)
+	

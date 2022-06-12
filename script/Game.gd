@@ -107,6 +107,7 @@ func cycle_test(new_cycle):
 
 # Quand on entre dans le jeu (à modifier quand le joueur pourra choisir "nouvelle partie" ou "charger partie"
 func _on_Game_tree_entered():
+	$Ambiance.play()
 	# On load les données sauvegardées
 	var data = SAVING_SCRIPT.load_data()
 	# On récupère le node "Player"
@@ -115,15 +116,20 @@ func _on_Game_tree_entered():
 	for keys in data:
 		# Si les données appartiennent au joueur
 		if keys == "player":
-			# Alors on récupère les données liées au joueur (ici uniquement la position)
+			# Alors on récupère les données liées au joueur
 			for p_keys in data[keys]:
-				player.set(p_keys, str2var("Vector2" + str(data[keys][p_keys])))
+				if p_keys == "level":
+					player.set_level(data[keys][p_keys])
+				if p_keys == "position":
+					player.set(p_keys, str2var("Vector2" + str(data[keys][p_keys])))
 		# Si les données appartiennent au monde (heurs, jours ...)
 		elif keys == "world":
 			# Alors on récupère les données liées au monde
 			tick = data[keys]["tick"]		# Les ticks pour connaître le moment exact de la journée
 			hours = data[keys]["hours"]		# L'heure pour avoir un variable plus commune que les ticks
 			nb_day = data[keys]["nb_day"]	# Le nombre de jour(s) passé(s)
+	get_node("Player").update_carac()
+	get_node("Player").update_display()
 
 
 # Fonction pour appeler la sauvegarde quand le jeu se ferme

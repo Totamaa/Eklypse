@@ -1,6 +1,7 @@
 # Les données à sauvegarder au format JSON
 const data = {
 	"player":	{
+		"level" : 1,
 		"position": Vector2(0, 0),
 	},
 	"world":	{

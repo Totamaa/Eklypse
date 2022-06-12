@@ -15,11 +15,14 @@ var speed 			= 300 + (level - 1)			# Vitesse de déplacement du joueur
 """
 Variables concernant la mécanique du joueur
 """
-# Expérience requise par niveau [1,2,3...]. XPreq = xp précédent + (xp précédent * 0.25)
-var exp_table 		=	[100, 125, 156, 195, 244, 305, 381, 476, 595, 744, 930, 1163, 1454, 1818, 2273, 2841, 3551, 4439, 5549, 6936]
 var timeToBeHealth 	= 5 # Nombre de seconde(s) avant la récupération de la vie
 var hpRecovered 	= 1	# Nombre de point(s) de vie récupéré(s) par recoveringSpeed seconde(s)
 var recoveringSpeed = 1	# Nombre de seconde(s) entre chaque hpRecovered point(s) de vie récupéré(s)
+
+"""
+Variables concernant la mécanique du jeu
+"""
+var firstPlay = true
 
 signal lvl_up(level)
 
@@ -44,6 +47,13 @@ func _ready():
 	add_to_group("player")
 	$GUI/VBoxContainer/HBox_HP/life.max_value = 100 + 20 * (niveau - 1)
 	$GUI/VBoxContainer/HBox_HP/life.value = $GUI/VBoxContainer/HBox_HP/life.max_value
+	
+func add_health(amount):
+	currentHealth += amount
+	update_display()
+	
+func set_level(lvl):
+	level = lvl
 
 # Fonctions appelée chaque frame (plusieurs fois par secondes)
 func _physics_process(_delta):
@@ -92,7 +102,8 @@ func update_display():
 	$GUI/VBoxContainer/HBox_HP/life.value = currentHealth
 	$GUI/VBoxContainer/HBox_XP/xp.value = experience
 	$GUI/VBoxContainer/HBox_HP/life.max_value = maxHealth
-	$GUI/VBoxContainer/HBox_XP/xp.max_value = exp_table[level-1]
+	$GUI/VBoxContainer/HBox_XP/xp.max_value = _exp_req(level)
+	$GUI/VBoxContainer/niveau.text = "Level " + str(level)
 
 # fonction qui gère les entrées claviées
 func get_input():
@@ -100,7 +111,6 @@ func get_input():
 	mouse_position = get_global_mouse_position()
 	var ligne_shoot = mouse_position - $Weapon/Position2D.global_position
 	var _rota = ligne_shoot.angle()
-	
 	# déplacement + animation
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
@@ -113,6 +123,11 @@ func get_input():
 		velocity.y += 1
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
+		
+	if (velocity.x != 0 or velocity.y != 0) and $"Marche herbe".playing != true:
+		$"Marche herbe".play()
+	if (velocity.x == 0 and velocity.y == 0) and $"Marche herbe".playing == true:
+		$"Marche herbe".stop()
 	playAnimation(velocity)
 	velocity = velocity.normalized() * speed # normaliezd = vectreur de longueur 1
 	
@@ -147,9 +162,15 @@ func _on_hitbox_body_entered(body):
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("f_attack"):
+		$Attack.play()
 		weapon.attack()
 		annimAttack()
 		
+func _exp_req(level):
+	var u1	= 100
+	var q 	= 1.25
+	var lvl = level - 1
+	return round(u1 * (pow(q, lvl)))
 	
 
 # fonction mal faites du dialogue
@@ -163,6 +184,7 @@ func get_property():
 	:sortie dict_propery: dictionnaire # pour la save en json
 	"""
 	var dict_propery = {
+		"level": level,
 		"position": self.global_position
 	}
 	
@@ -183,10 +205,10 @@ Fonction qui ajoute l'expérience au joueur
 """
 func add_xp(xp):
 	experience += xp
-	if experience > exp_table[level-1]:
-		experience = experience - exp_table[level]
+	if experience > _exp_req(level):
+		experience = experience - _exp_req(level)
 		level_up()
-	elif experience == exp_table[level-1]:
+	elif experience == _exp_req(level):
 		experience = 0
 		level_up()
 	update_display()
@@ -195,8 +217,9 @@ func add_xp(xp):
 Fonction de level up
 """
 func level_up():
-	print("ok level up")
+	print_debug(_exp_req(level))
 	level += 1
+	print_debug(_exp_req(level))	
 	update_carac()
 	update_display()
 	emit_signal("lvl_up", level)

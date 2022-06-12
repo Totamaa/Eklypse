@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Schizo.mp3-963f1b32b22b32c7c6e14967dd006e19.mp3str"
+
+[deps]
+
+source_file="res://Schizo.mp3"
+dest_files=[ "res://.import/Schizo.mp3-963f1b32b22b32c7c6e14967dd006e19.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
