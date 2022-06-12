@@ -8,7 +8,7 @@ export var speedNight = 200
 export var attackDay = 8
 export var attackNight = 12
 export var timeToBeHealth = 5
-export var xpKill = 20
+export var xpKill = 100
 
 
 var Joueur # Le noeud du joueur

@@ -10,7 +10,7 @@ var maxHealth 		= 100 + 20 * (level - 1)	# Points de vie maximaux du joueur au l
 var currentHealth 	= maxHealth					# Points de vie actuels du joueur
 var strength 		= 1 * level					# Force du joueur
 var damage			= 20 + strength				# Dégats infligés par le joueur
-var speed 			= 300 + (level - 1)		# Vitesse de déplacement du joueur
+var speed 			= 300 + (level - 1)			# Vitesse de déplacement du joueur
 
 """
 Variables concernant la mécanique du joueur
@@ -20,6 +20,8 @@ var exp_table 		=	[100, 125, 156, 195, 244, 305, 381, 476, 595, 744, 930, 1163, 
 var timeToBeHealth 	= 5 # Nombre de seconde(s) avant la récupération de la vie
 var hpRecovered 	= 1	# Nombre de point(s) de vie récupéré(s) par recoveringSpeed seconde(s)
 var recoveringSpeed = 1	# Nombre de seconde(s) entre chaque hpRecovered point(s) de vie récupéré(s)
+
+signal lvl_up(level)
 
 signal level5
 
@@ -71,6 +73,17 @@ func _physics_process(_delta):
 				counter = 0
 		else:
 			timeBeforeHeal -= 1
+			
+
+"""
+Fonction qui update les caractèristiques
+"""
+func update_carac():
+	maxHealth 		= 100 + 20 * (level - 1)	# Points de vie maximaux du joueur au level L
+	currentHealth 	= maxHealth					# Points de vie actuels du joueur
+	strength 		= 1 * level					# Force du joueur
+	damage			= 20 + strength				# Dégats infligés par le joueur
+	speed 			= 300 + (level - 1)			# Vitesse de déplacement du joueur
 
 """
 Fonction qui update l'affichage de la barre de vie
@@ -80,7 +93,6 @@ func update_display():
 	$GUI/VBoxContainer/HBox_XP/xp.value = experience
 	$GUI/VBoxContainer/HBox_HP/life.max_value = maxHealth
 	$GUI/VBoxContainer/HBox_XP/xp.max_value = exp_table[level-1]
-	$GUI/VBoxContainer/HBox_XP/xp.value = experience
 
 # fonction qui gère les entrées claviées
 func get_input():
@@ -166,38 +178,31 @@ func playAnimation(v):
 	elif v.y == -1:
 		$animPlayer.play("walk_up")
 
-
-func _on_GUI_level_up():
-	"""
-	: Augmente les stats du joueurs quand il level up
-	"""
-	speed = 300 + (niveau - 1)
-	$GUI/VBoxContainer/HBox_HP/life.max_value = 100 + 20 * (niveau - 1)
-	$GUI/VBoxContainer/HBox_HP/life.value = $GUI/VBoxContainer/HBox_HP/life.max_value
-	$GUI/VBoxContainer/niveau.set_text("Level: " + str(niveau))
-	if niveau == 2:
-		emit_signal("level5")
-
-
 """
 Fonction qui ajoute l'expérience au joueur
 """
 func add_xp(xp):
 	experience += xp
-	if experience > exp_table[level]:
+	if experience > exp_table[level-1]:
 		experience = experience - exp_table[level]
 		level_up()
-	elif experience == exp_table[level]:
+	elif experience == exp_table[level-1]:
 		experience = 0
 		level_up()
 	update_display()
-	
 	
 """
 Fonction de level up
 """
 func level_up():
+	print("ok level up")
 	level += 1
+	update_carac()
+	update_display()
+	emit_signal("lvl_up", level)
+	if level == 5:
+		emit_signal("level5")
+	
 
 func annimAttack():
 	"""

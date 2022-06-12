@@ -39,9 +39,9 @@ func _on_TabContainer_tab_changed(tab):
 		get_node("ColorRect").visible = false
 		
 func _physics_process(delta):
-	$Stats/VBoxContainer/Level.set_text("Level : " + str(get_parent().get_node("Player").niveau))
-	$Stats/VBoxContainer/HP.set_text("HP : " + str(get_node("../Player/GUI/VBoxContainer/HBox_HP/life").value) + " / " + str(get_node("../Player/GUI/VBoxContainer/HBox_HP/life").max_value))
-	$Stats/VBoxContainer/Force.set_text("Force : " + str(get_parent().get_node("Player").degats))
+	$Stats/VBoxContainer/Level.set_text("Level : " + str(get_parent().get_node("Player").level))
+	$Stats/VBoxContainer/HP.set_text("HP : " + str(get_parent().get_node("Player").currentHealth) + " / " + str(get_parent().get_node("Player").maxHealth))
+	$Stats/VBoxContainer/Force.set_text("Force : " + str(get_parent().get_node("Player").damage))
 	$Stats/VBoxContainer/Vitesse.set_text("Speed : " + str(get_parent().get_node("Player").speed))
 
 
