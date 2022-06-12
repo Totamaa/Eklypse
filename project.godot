@@ -36,11 +36,14 @@ config/name="Eklypse"
 run/main_scene="res://scene/menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://script/Global.gd"
+
 [display]
 
 window/size/width=1920
 window/size/height=1080
-window/size/fullscreen=true
 
 [input]
 

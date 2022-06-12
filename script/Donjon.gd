@@ -5,7 +5,10 @@ var xpKill = 100
 
 
 func _ready():
-	$Player/Camera2D.current = false
+	add_child(Global.player)
+#	$Player/Camera2D.current = false
+	for node in get_children():
+		print_debug(node)
 
 
 #fonction des degats du mob

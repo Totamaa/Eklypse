@@ -154,11 +154,11 @@ func _on_MobTimer_timeout():
 			spawnY = rand_range(positionPlayer.y - distMax, positionPlayer.y + distMax)
 		
 		# On instancie un mob
-		var mob = mob_scene.instance()
-		add_child(mob)
+		var enemi = mob_scene.instance()
+		add_child(enemi)
 		
 		# On le place a l'endroit random
-		mob.position = Vector2(spawnX, spawnY)
+		enemi.position = Vector2(spawnX, spawnY)
 	
 
 
