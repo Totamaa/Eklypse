@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/monsters/boss/bottom-left/Idle/Version1_Idle_00.png" type="Texture" id=1]
+[ext_resource path="res://script/Boss.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 48.0104
 
 [node name="Boss" type="KinematicBody2D"]
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -29,3 +31,6 @@ margin_left = -344.5
 margin_top = -115.0
 margin_right = 344.5
 margin_bottom = -100.0
+max_value = 2000.0
+step = 1.0
+value = 2000.0

@@ -40,7 +40,6 @@ func _input(event):
 func _physics_process(delta):
 	tick += 1 # avance du temps
 	day_cycle()
-	$MobPath.global_position = Vector2.ZERO
 
 # fonction qui calcule la durée d'un cycle jour/nuit
 func day_cycle():
@@ -140,15 +139,28 @@ func _on_Game_tree_exited():
 
 
 func _on_MobTimer_timeout():
-		
-	# On choisit un endroit random sur le path du mob 
-	var mob_spawn_location = $MobPath/MobSpawnhLocation
-	mob_spawn_location.offset = randi()
-
 	if get_tree().get_nodes_in_group("enemy").size() < nbEnemyMax:
+		
+		var positionPlayer = Vector2()
+		var distMin = 150
+		var distMax = 800
+		positionPlayer = $Player.global_position
+		var rng = RandomNumberGenerator.new()
+		
+		var spawnX = rand_range(positionPlayer.x - distMax, positionPlayer.x + distMax)
+		var spawnY = rand_range(positionPlayer.y - distMax, positionPlayer.y + distMax)
+		while positionPlayer.y - distMin < spawnY and spawnY < positionPlayer.y + distMin and positionPlayer.x - distMin < spawnX and spawnX < positionPlayer.x + distMin:
+			spawnX = rand_range(positionPlayer.x - distMax, positionPlayer.x + distMax)
+			spawnY = rand_range(positionPlayer.y - distMax, positionPlayer.y + distMax)
+		
 		# On instancie un mob
 		var mob = mob_scene.instance()
 		add_child(mob)
 		
 		# On le place a l'endroit random
-		mob.position = mob_spawn_location.position
+		mob.position = Vector2(spawnX, spawnY)
+	
+
+
+
+

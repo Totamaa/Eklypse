@@ -4,7 +4,10 @@ var quete = 0
 # 0: rien, 1: tuto, 2: tuer 10 monstres, 3: tuer le boss
 
 var tutoDone = false
+var xpTuto = 50
+
 var missionDone = false
+var xpMission = 100
 
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
 func _ready():
@@ -30,6 +33,7 @@ func _on_Area2D_body_entered(body):
 				quete += 1
 				$DialoguePNJ/Mission.show()
 				$CenterContainer/Label.set_text("...")
+				body.add_xp(xpTuto)
 			else:
 				$CenterContainer/Label.set_text("...")
 				$DialoguePNJ/Wait.show()
@@ -40,6 +44,7 @@ func _on_Area2D_body_entered(body):
 				quete +=1
 				$CenterContainer/Label.set_text("...")
 				$DialoguePNJ/Boss.show()
+				body.add_xp(xpMission)
 			else:
 				$CenterContainer/Label.set_text("...")
 				$DialoguePNJ/Wait.show()

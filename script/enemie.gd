@@ -141,12 +141,13 @@ func _drop_item():
 		droped_item.global_position = self.global_position
 		
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
-	$VisibilityNotifier2D/Timer.start()
-
+#	$VisibilityNotifier2D/Timer.start()
+	queue_free()
 
 func _on_Timer_timeout():
 	queue_free()
 
 
 func _on_VisibilityNotifier2D_viewport_entered(viewport):
-	$VisibilityNotifier2D/Timer.stop()
+#	$VisibilityNotifier2D/Timer.stop()
+	pass
