@@ -30,6 +30,7 @@ func _ready():
 	#tick = length_day / 2 # la moitié du jour: débute a midi
 	$Player/Light2D.hide()
 	$MobTimer.wait_time = spawn
+	$Player/Camera2D.current = true
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
