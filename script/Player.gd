@@ -150,22 +150,23 @@ func _on_hitbox_body_entered(body):
 	# Si le corps qui entre en contact est un ennemi
 	if body.is_in_group("enemy"):
 		if body != null:
-			if currentHealth - body.attack < 0:
-				currentHealth = 0
-				get_tree().change_scene("res://scene/Die.tscn")
-			else:
-				currentHealth -= body.attack
-			update_display()
-			
+			takeDamage(body.attack)
 		timeBeforeHeal = timeToBeHealth * 60
 		
 		mobBump = body
 		isHit = true
 		
-		
+
+# fonction pour les dégats que prend le joueurs
+func takeDamage(damage):
+	if currentHealth - damage <= 0:
+		currentHealth = 0
+		get_tree().change_scene("res://scene/Die.tscn")
+	else:
+		currentHealth -= damage
+	update_display()
 
 #fonction pour l'attque
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("f_attack"):
 		$Attack.play()
@@ -268,8 +269,4 @@ func annimAttack():
 		if -souris_placement.x > -souris_placement.y:
 			$animPlayer.play("attack_left")
 		else:
-			$animPlayer.play("attack_up")
-	
-	
-	
-	
+			$animPlayer.play("attack_up")	

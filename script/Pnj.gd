@@ -9,6 +9,8 @@ var xpTuto = 50
 var missionDone = false
 var xpMission = 100
 
+signal tutoDone
+
 # Fonction qui commence quand l'objet apparait pour la 1ère fois
 func _ready():
 	add_to_group("pnj")
@@ -34,6 +36,7 @@ func _on_Area2D_body_entered(body):
 				$DialoguePNJ/Mission.show()
 				$CenterContainer/Label.set_text("...")
 				body.add_xp(xpTuto)
+				emit_signal("tutoDone")
 			else:
 				$CenterContainer/Label.set_text("...")
 				$DialoguePNJ/Wait.show()

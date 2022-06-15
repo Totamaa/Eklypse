@@ -31,6 +31,7 @@ func _ready():
 	$Player/Light2D.hide()
 	$MobTimer.wait_time = spawn
 	$Player/Camera2D.current = true
+	$MobTimer.stop()
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
@@ -170,3 +171,6 @@ func _on_MobTimer_timeout():
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemy"):
 		body.queue_free()
+
+func _on_Pnj_tutoDone():
+	$MobTimer.start()
