@@ -23,6 +23,8 @@ var recoveringSpeed = 1	# Nombre de seconde(s) entre chaque hpRecovered point(s)
 Variables concernant la mécanique du jeu
 """
 var firstPlay = true
+var isHit = false
+var mobBump = null
 
 signal lvl_up(level)
 
@@ -80,6 +82,14 @@ func _physics_process(_delta):
 				counter = 0
 		else:
 			timeBeforeHeal -= 1
+		
+	# bump
+	if isHit and mobBump != null:
+		var point_col = global_position - mobBump.global_position
+		velocity.x = sign(point_col.x) * 50 * speed
+		velocity.y = sign(point_col.y) * 50 * speed
+		velocity = move_and_slide(velocity * _delta)
+		isHit = false
 			
 
 """
@@ -148,11 +158,10 @@ func _on_hitbox_body_entered(body):
 			update_display()
 			
 		timeBeforeHeal = timeToBeHealth * 60
-		# bump 
-#		var point_col = global_position - body.global_position
-#		velocity.x = sign(point_col.x) * 5 * speed
-#		velocity.y = sign(point_col.y) * 5 * speed
-#		velocity = move_and_slide(velocity)
+		
+		mobBump = body
+		isHit = true
+		
 		
 
 #fonction pour l'attque

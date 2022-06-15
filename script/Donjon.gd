@@ -7,9 +7,7 @@ const SAVING_SCRIPT = preload("res://script/save.gd")
 
 func _ready():
 	add_child(Global.player)
-#	$Player/Camera2D.current = false
-	for node in get_children():
-		print_debug(node)
+	$Player/Camera2D.current = false
 
 func _on_Donjon_tree_entered():
 	# On load les données sauvegardées
