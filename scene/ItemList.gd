@@ -22,7 +22,10 @@ func _push_Items():
 	for key in ItemListContent:
 		var label = "(x" + str(ItemListContent[key]) + ") " + key.item_name
 		var description = "\nDescription"
-		self.add_item(label, key.inventory_texture, true)
+		self.add_item(label, key.inventory_texture, true)		
+
+func use_item(item):
+	ItemListContent[item] = ItemListContent[item] - 1	
 		
 
 func item_collected(Item_data: ItemData):

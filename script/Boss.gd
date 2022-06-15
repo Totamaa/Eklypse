@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var hpMax = 4000
-export var hp = 4000
+export var hp = 100
 export var speed = 500
 export var attack = 25
 
@@ -26,7 +26,6 @@ func hit(attacker: Player, damage : int):
 	if hp <= 0:
 		$AnimatedSprite.play("Death")
 		queue_free()
-
 
 func _on_BossHP_value_changed(value):
 	# Le boss passe en phase 3

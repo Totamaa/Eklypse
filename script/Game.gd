@@ -167,7 +167,6 @@ func _on_MobTimer_timeout():
 		# On le place a l'endroit random
 		enemi.position = Vector2(spawnX, spawnY)
 	
-
-
-
-
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("enemy"):
+		body.queue_free()
