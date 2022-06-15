@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/SeekPng.com_light-shine-png_172580.png" type="Texture" id=1]
 [ext_resource path="res://script/Game.gd" type="Script" id=2]
@@ -241,8 +241,9 @@ position = Vector2( 963, -30 )
 item_data = ExtResource( 7 )
 
 [node name="Ambiance" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 13 )
-volume_db = -25.0
+volume_db = -10.0
 
 [connection signal="tree_entered" from="." to="." method="_on_Game_tree_entered"]
 [connection signal="tree_exited" from="." to="." method="_on_Game_tree_exited"]

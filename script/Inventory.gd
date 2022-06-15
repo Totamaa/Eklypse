@@ -49,4 +49,5 @@ func _on_Consommables_item_activated(index):
 	var object = $TabContainer/Consommables.get_item_content_list()[index]
 	if object.effect_type == 0:
 		get_parent().get_node("Player").add_health(object.recover)
+		
 	

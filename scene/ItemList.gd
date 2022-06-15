@@ -16,7 +16,6 @@ func get_item_content_list():
 	for key in ItemListContent:
 		tabl.append(key)
 	return tabl
-		
 
 func _push_Items():
 	self.clear()

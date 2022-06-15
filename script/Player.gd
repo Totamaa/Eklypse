@@ -43,8 +43,7 @@ onready var weapon = $Weapon
 
 func _ready():
 	add_to_group("player")
-	$GUI/VBoxContainer/HBox_HP/life.max_value = 100 + 20 * (niveau - 1)
-	$GUI/VBoxContainer/HBox_HP/life.value = $GUI/VBoxContainer/HBox_HP/life.max_value
+	update_display()
 	
 func add_health(amount):
 	currentHealth += amount
@@ -204,8 +203,9 @@ Fonction qui ajoute l'expérience au joueur
 func add_xp(xp):
 	experience += xp
 	if experience > _exp_req(level):
-		experience = experience - _exp_req(level)
-		level_up()
+		while experience > _exp_req(level):
+			experience = experience - _exp_req(level)
+			level_up()
 	elif experience == _exp_req(level):
 		experience = 0
 		level_up()

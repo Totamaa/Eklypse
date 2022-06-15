@@ -11,6 +11,7 @@ func _ready():
 
 func update_display():
 	$CanvasLayer/BossHP.value = hp 
+	
 
 #fonction des degats du mob
 func hit(attacker: Player, damage : int):
