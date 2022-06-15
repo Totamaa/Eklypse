@@ -31,6 +31,7 @@ func _ready():
 	$Player/Light2D.hide()
 	$MobTimer.wait_time = spawn
 	$Player/Camera2D.current = true
+	$MobTimer.stop()
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
@@ -166,8 +167,6 @@ func _on_MobTimer_timeout():
 		
 		# On le place a l'endroit random
 		enemi.position = Vector2(spawnX, spawnY)
-	
 
-
-
-
+func _on_Pnj_tutoDone():
+	$MobTimer.start()

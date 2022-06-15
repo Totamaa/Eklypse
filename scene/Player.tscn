@@ -271,7 +271,7 @@ position = Vector2( 26.5336, 7.52844 )
 
 [node name="Marche herbe" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -15.0
+volume_db = -28.0
 
 [node name="Attack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
