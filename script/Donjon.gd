@@ -22,8 +22,7 @@ func _on_Donjon_tree_entered():
 			for p_keys in data[keys]:
 				if p_keys == "level":
 					player.set_level(data[keys][p_keys])
-				if p_keys == "position":
-					player.set(p_keys, str2var("Vector2" + str(data[keys][p_keys])))
+	player.set("position", Vector2(-100, 250))
 	get_node("Player").update_carac()
 	get_node("Player").update_display()
 

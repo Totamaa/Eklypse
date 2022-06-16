@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 export var hpMax = 4000
 export var hp = 4000
-export var speed = 50
-export var attack = 1
+export var speed = 100
+export var attack = 15
 
 var phase = 1
 var bullet = preload("res://scene/bullet.tscn")
@@ -19,7 +19,10 @@ func _ready():
 
 func _physics_process(delta):
 	
-	var velocity = Vector2(directionX, directionY).normalized() * speed
+	if is_on_wall():
+		directionX *= -1
+		directionY *= -1
+	var velocity = Vector2(directionX, directionY).normalized() * speed 
 	move_and_slide(velocity)
 
 
@@ -48,6 +51,8 @@ func _on_BossHP_value_changed(value):
 		$AnimatedSprite.play("nextPhase")
 		$Timer.wait_time = 3.6
 		$Timer.start()
+		$AnimatedSprite.scale = Vector2(1.5, 1.5)
+		$CollisionShape2D.scale = Vector2(1.5, 1.5)
 	
 	# Le boss passe en phase 2
 	elif value < (2 * hpMax) / 3 and phase == 1:
@@ -58,6 +63,8 @@ func _on_BossHP_value_changed(value):
 		$AnimatedSprite.play("nextPhase")
 		$Timer.wait_time = 2.4
 		$Timer.start()
+		$AnimatedSprite.scale = Vector2(1.2, 1.2)
+		$CollisionShape2D.scale = Vector2(1.2, 1.2)
 
 func _on_Timer_timeout():
 	var rng = RandomNumberGenerator.new()
