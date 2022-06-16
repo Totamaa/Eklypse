@@ -11,10 +11,16 @@ func _ready():
 func get_item_content():
 	return ItemListContent
 	
-func get_item_content_list():
+func get_item_content_list_keys():
 	var tabl = []
 	for key in ItemListContent:
 		tabl.append(key)
+	return tabl
+	
+func get_item_content_list_values():
+	var tabl = []
+	for value in ItemListContent.values():
+		tabl.append(value)
 	return tabl
 
 func _push_Items():
@@ -22,12 +28,16 @@ func _push_Items():
 	for key in ItemListContent:
 		var label = "(x" + str(ItemListContent[key]) + ") " + key.item_name
 		var description = "\nDescription"
-		self.add_item(label, key.inventory_texture, true)		
+		self.add_item(label, key.inventory_texture, true)	
 
-func use_item(item):
-	ItemListContent[item] = ItemListContent[item] - 1	
+func use_item(item,index):
+	if ItemListContent[item] > 1:
+		ItemListContent[item] = ItemListContent[item] - 1
+	else:
+		ItemListContent[item] = ItemListContent[item] - 1
+		self.remove_item(index)
 		
-
+	
 func item_collected(Item_data: ItemData):
 	if Item_data in ItemListContent:
 		ItemListContent[Item_data] += 1

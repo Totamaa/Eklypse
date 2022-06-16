@@ -48,7 +48,10 @@ func _ready():
 	update_display()
 	
 func add_health(amount):
-	currentHealth += amount
+	if currentHealth + amount > maxHealth:
+		currentHealth = maxHealth
+	else:
+		currentHealth += amount
 	update_display()
 	
 func set_level(lvl):
@@ -82,14 +85,6 @@ func _physics_process(_delta):
 				counter = 0
 		else:
 			timeBeforeHeal -= 1
-		
-	# bump
-	if isHit and mobBump != null:
-		var point_col = global_position - mobBump.global_position
-		velocity.x = sign(point_col.x) * 50 * speed
-		velocity.y = sign(point_col.y) * 50 * speed
-		velocity = move_and_slide(velocity * _delta)
-		isHit = false
 			
 
 """

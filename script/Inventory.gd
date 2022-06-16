@@ -46,8 +46,11 @@ func _physics_process(delta):
 
 func _on_Consommables_item_activated(index):
 	var current_tab = get_node("TabContainer").get_current_tab_control()
-	var object = $TabContainer/Consommables.get_item_content_list()[index]
+	var object = $TabContainer/Consommables.get_item_content_list_keys()[index]
+	var quantity = $TabContainer/Consommables.get_item_content_list_values()[index]
 	if object.effect_type == 0:
 		get_parent().get_node("Player").add_health(object.recover)
+		$TabContainer/Consommables.use_item(object, index)
+	$TabContainer/Consommables.set_item_text(index, "(x" + str($TabContainer/Consommables.ItemListContent[object]) + ") " + object.item_name)
 		
 	

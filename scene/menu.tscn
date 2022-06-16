@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://script/menu.gd" type="Script" id=1]
+[ext_resource path="res://scene/VBoxContainer.gd" type="Script" id=2]
+
+[sub_resource type="Theme" id=1]
 
 [node name="menu" type="Control"]
 anchor_right = 1.0
@@ -10,47 +13,68 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -871.0
+margin_top = -545.0
+margin_right = 2185.0
+margin_bottom = 1393.0
+color = Color( 0.117647, 0.117647, 0.117647, 0.756863 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = -100.0
-margin_right = 128.0
+margin_left = 422.0
+margin_top = -147.0
+margin_right = 661.0
+margin_bottom = -55.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="bContinuer" type="Button" parent="VBoxContainer"]
-margin_right = 108.0
+margin_right = 239.0
 margin_bottom = 20.0
 focus_neighbour_top = NodePath("../bQuitter")
-text = "continuer"
+theme = SubResource( 1 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.713726, 0.713726, 0.713726, 1 )
+text = "Continuer"
 
 [node name="bNouvellePartie" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
-margin_right = 108.0
+margin_right = 239.0
 margin_bottom = 44.0
-text = "nouvelle partie"
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.717647, 0.717647, 0.717647, 1 )
+text = "Nouvelle partie"
 
 [node name="bOptions" type="Button" parent="VBoxContainer"]
 margin_top = 48.0
-margin_right = 108.0
+margin_right = 239.0
 margin_bottom = 68.0
-text = "options"
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.690196, 0.690196, 0.690196, 1 )
+text = "Options"
 
 [node name="bQuitter" type="Button" parent="VBoxContainer"]
 margin_top = 72.0
-margin_right = 108.0
+margin_right = 239.0
 margin_bottom = 92.0
 focus_neighbour_bottom = NodePath("../bContinuer")
-text = "quitter"
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.733333, 0.721569, 0.721569, 1 )
+text = "Quitter"
 
-[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bContinuer_pressed"]
-[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bJouer_pressed"]
 [connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_jouer_pressed"]
-[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bNouvellePartie_pressed"]
-[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bJouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bJouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bContinuer_pressed"]
 [connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_jouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bJouer_pressed"]
+[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bNouvellePartie_pressed"]
 [connection signal="pressed" from="VBoxContainer/bOptions" to="." method="_on_bOptions_pressed"]
 [connection signal="pressed" from="VBoxContainer/bOptions" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/bQuitter" to="." method="_on_bQuitter_pressed"]
