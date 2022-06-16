@@ -321,7 +321,7 @@ polygon = PoolVector2Array( 512, 128, 959, -96, 1344, 96, 896, 320 )
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="Player" parent="." groups=["Joueur"] instance=ExtResource( 4 )]
-position = Vector2( 792, 187 )
+position = Vector2( 1000, 100 )
 z_index = -2
 
 [node name="Light2D" type="Light2D" parent="Player"]
@@ -336,13 +336,14 @@ position = Vector2( -155, -107 )
 z_index = -2
 
 [node name="Pnj" parent="." instance=ExtResource( 5 )]
+position = Vector2( 179, -3 )
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 12.0
 autostart = true
 
 [node name="tp" parent="." instance=ExtResource( 11 )]
-position = Vector2( 851, -221 )
+position = Vector2( 1294, 754 )
 
 [node name="Item" parent="." instance=ExtResource( 8 )]
 position = Vector2( 138, -100 )
@@ -351,7 +352,6 @@ item_data = ExtResource( 7 )
 [node name="Ambiance" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 13 )
-volume_db = -25.0
 
 [node name="Inventory" parent="." instance=ExtResource( 9 )]
 margin_left = 203.0
