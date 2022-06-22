@@ -14,10 +14,10 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -871.0
-margin_top = -545.0
-margin_right = 2185.0
-margin_bottom = 1393.0
+margin_left = -801.0
+margin_top = -388.0
+margin_right = 2255.0
+margin_bottom = 1550.0
 color = Color( 0.117647, 0.117647, 0.117647, 0.756863 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -69,13 +69,125 @@ custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 0.733333, 0.721569, 0.721569, 1 )
 text = "Quitter"
 
-[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_jouer_pressed"]
-[connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bJouer_pressed"]
+[node name="saves" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 430.0
+margin_top = 409.0
+margin_right = 656.0
+margin_bottom = 447.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save1" type="VBoxContainer" parent="saves" groups=["saves_group"]]
+margin_left = 43.0
+margin_right = 87.0
+margin_bottom = 38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="saves/Save1"]
+margin_right = 44.0
+margin_bottom = 14.0
+text = "Vide"
+align = 1
+
+[node name="bSave1" type="Button" parent="saves/Save1"]
+margin_top = 18.0
+margin_right = 44.0
+margin_bottom = 38.0
+text = "Jouer"
+
+[node name="Save2" type="VBoxContainer" parent="saves" groups=["saves_group"]]
+margin_left = 91.0
+margin_right = 135.0
+margin_bottom = 38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="saves/Save2"]
+margin_right = 44.0
+margin_bottom = 14.0
+text = "Vide"
+align = 1
+
+[node name="bSave2" type="Button" parent="saves/Save2"]
+margin_top = 18.0
+margin_right = 44.0
+margin_bottom = 38.0
+text = "Jouer"
+
+[node name="Save3" type="VBoxContainer" parent="saves" groups=["saves_group"]]
+margin_left = 139.0
+margin_right = 183.0
+margin_bottom = 38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="saves/Save3"]
+margin_right = 44.0
+margin_bottom = 14.0
+text = "Vide"
+align = 1
+
+[node name="bSave3" type="Button" parent="saves/Save3"]
+margin_top = 18.0
+margin_right = 44.0
+margin_bottom = 38.0
+text = "Jouer"
+
+[node name="new_game" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 468.0
+margin_top = 369.0
+margin_right = 618.0
+margin_bottom = 411.0
+rect_min_size = Vector2( 150, 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="new_game"]
+margin_right = 150.0
+margin_bottom = 14.0
+text = "Nom de la partie"
+align = 1
+
+[node name="LineEdit" type="LineEdit" parent="new_game"]
+margin_top = 18.0
+margin_right = 150.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 150, 24 )
+placeholder_text = "ma_partie"
+placeholder_alpha = 0.119
+caret_blink = true
+
+[node name="bJouer" type="Button" parent="new_game"]
+margin_top = 46.0
+margin_right = 150.0
+margin_bottom = 66.0
+text = "Jouer"
+
+[node name="bRetour" type="Button" parent="."]
+visible = false
+margin_left = 514.0
+margin_top = 528.0
+margin_right = 568.0
+margin_bottom = 548.0
+text = "Retour"
+
 [connection signal="pressed" from="VBoxContainer/bContinuer" to="." method="_on_bContinuer_pressed"]
-[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_jouer_pressed"]
-[connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bJouer_pressed"]
 [connection signal="pressed" from="VBoxContainer/bNouvellePartie" to="." method="_on_bNouvellePartie_pressed"]
 [connection signal="pressed" from="VBoxContainer/bOptions" to="." method="_on_bOptions_pressed"]
 [connection signal="pressed" from="VBoxContainer/bOptions" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/bQuitter" to="." method="_on_bQuitter_pressed"]
 [connection signal="pressed" from="VBoxContainer/bQuitter" to="." method="_on_quitter_pressed"]
+[connection signal="pressed" from="saves/Save1/bSave1" to="." method="_on_bSave1_pressed"]
+[connection signal="pressed" from="saves/Save2/bSave2" to="." method="_on_bSave2_pressed"]
+[connection signal="pressed" from="saves/Save3/bSave3" to="." method="_on_bSave3_pressed"]
+[connection signal="pressed" from="new_game/bJouer" to="." method="_on_bJouer_pressed"]
+[connection signal="pressed" from="bRetour" to="." method="_on_bRetour_pressed"]

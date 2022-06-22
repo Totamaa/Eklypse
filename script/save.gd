@@ -2,11 +2,11 @@
 const data = {
 	"player":	{
 		"level" : 1,
-		"position": Vector2(0, 0),
+		"position": Vector2(1000, 100),
 	},
 	"world":	{
 		"tick": 0,
-		"hours": 0,
+		"hours": 8,
 		"nb_day": 0,
 	},
 	"inventory":	{
@@ -15,15 +15,24 @@ const data = {
 	}
 }
 
-# Chemin du fichier de sauvegarde (dans le répertoire du jeu pour le rendre plus accessible mais à changer à la fin)
-const save_path = "res://save.json"
+static func create_save_file(file_name):
+	var file = File.new()
+	file.open("res://saves/" + file_name + ".json", File.WRITE)
+	file.store_line(to_json(data))
+	file.close()
+	Global.set_save_path(file_name + ".json")
+
 
 # Fonction qui permet de sauvegarder lorsque le joueur quitte le jeu
 static func save_on_quit(world_data, player_data, inventory_data):
 	# Création d'un objet "File"
 	var file = File.new()
+	var isOpen = null
 	# On affecte file à un fichier en mode écriture
-	var isOpen = file.open(save_path, File.WRITE)
+	if Global.save_file_path == null:
+		isOpen = file.open("res://saves/save.json", File.WRITE)
+	else:
+		isOpen = file.open(Global.save_file_path, File.WRITE)
 	# Si tout est ok
 	if isOpen == OK:
 		# On parcours les données concernant le monde
@@ -53,9 +62,9 @@ static func load_data():
 	# Création de la variable qui contiendra les données
 	var loaded_data
 	# On vérifie que le fichier de sauvegarde existe
-	if file.file_exists(save_path):
+	if Global.save_file_path != null and file.file_exists(Global.save_file_path):
 		# Si oui on l'ouvre en mode lecture
-		file.open(save_path,File.READ)
+		file.open(Global.save_file_path,File.READ)
 		# On récupère les données
 		loaded_data = parse_json(file.get_line())
 		# On ferme le fichier

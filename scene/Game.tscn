@@ -252,6 +252,7 @@ points = PoolVector2Array( 60, 135, 30, 135, 45, 105, 60, 105 )
 script = ExtResource( 2 )
 spawn = 2
 nbEnemyMax = 5
+color_night = Color( 0.392157, 0.294118, 0.294118, 1 )
 mob_scene = ExtResource( 3 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
@@ -352,6 +353,7 @@ item_data = ExtResource( 7 )
 [node name="Ambiance" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 13 )
+volume_db = -10.0
 
 [node name="Inventory" parent="." instance=ExtResource( 9 )]
 margin_left = 203.0

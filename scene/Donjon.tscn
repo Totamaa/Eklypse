@@ -192,7 +192,7 @@ position = Vector2( 483, 322 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
-volume_db = -35.0
+volume_db = -5.82
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
